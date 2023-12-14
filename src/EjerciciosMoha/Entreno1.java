@@ -6,7 +6,8 @@ public class Entreno1 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
+		String h = "Hola";
+		System.out.println(h);
 	}
 
 }
