@@ -26,8 +26,11 @@ public class Memory {
 				break;
 			case 3:
 				Posar(secret);
+				break;
+			case 4:
+				Remenar();
 			}
-
+			
 		} while (opcio != 0);
 
 	}
@@ -38,6 +41,7 @@ public class Memory {
 		System.out.println("1. Inicialitzar Tauler");
 		System.out.println("2. Mostrar Tauler");
 		System.out.println("3. Posar Peces");
+		System.out.println("3. Remenar Peces");
 		do {
 			System.out.println("Escull una opcio: ");
 			opcio = sc.nextInt();
@@ -70,12 +74,23 @@ public class Memory {
 	}
 
 	private static void Posar(char[][] secret) {
+		char lletra = 'A';
+		int num = 0;
 		for (int i = 0; i < TAULER; i++) {
 			for (int j = 0; j < TAULER; j++) {
-				secret[i][j] = '?';
+				if (num != 0 && (num % 2) == 0) {
+					lletra++;
+				}
+				secret[i][j] = lletra;
+				num++;
 			}
 		}
 
 	}
+	
+	private static void Remenar() {
+		
+	}
+	
 
 }
