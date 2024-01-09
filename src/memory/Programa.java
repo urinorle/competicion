@@ -13,7 +13,7 @@ public class Programa {
 	static final char Columnes = 4;
 
 	public static void main(String[] args) {
-
+		
 		int a;
 		char[][] tauler = new char[Files][Columnes];
 		char[][] taulerSecret = new char[Files][Columnes];
