@@ -6,12 +6,14 @@ import java.util.Scanner;
 public class MEMORY {
 
 	public static Scanner sc = new Scanner(System.in);
+	public static Random rd = new Random();
 	public static final int MEDIDA_DEL_TABLERO = 4;
 
 	public static void main(String[] args) {
 		char Tauler[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
 		char Secret[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
 		int Opcio;
+		int opcio2;
 		System.out.println("Benvinguts al joc MEMORY!");
 		System.out.println();
 		do {
@@ -34,9 +36,152 @@ public class MEMORY {
 				remenarPeces(Secret);
 				partidaNormalV2(Tauler, Secret);
 				break;
+			case 3:
+				inicialitzarTauler(Tauler);
+				posarPeces(Secret);
+				remenarPeces(Secret);
+				opcio2 = menu2();
+				if (opcio2 == 1) {
+					modeAleatori(Tauler, Secret);
+				}
+				else {
+					
+				}
+				break;
 			}
 		} while (Opcio != 0);
 
+	}
+
+	public static void modeAleatori(char[][] Matriu, char[][] Secret) {
+		int turno = 0;
+		int puntsJugador1 = 0;
+		int puntsCPU = 0;
+
+		while (casellesPendents(Matriu) >= 2) {
+			if (hacerJugadaCPUFacil(Matriu, Secret, turno)) {
+				System.out.println("PARELLA");
+				if (turno == 0)
+					puntsJugador1++;
+				else
+					puntsCPU++;
+
+				System.out.println("Punts Jugador 1: " + puntsJugador1);
+				System.out.println("Punts Jugador 2: " + puntsCPU);
+			}
+
+			else {
+				if (turno == 0) {
+					System.out.println("UNA ALTRA VEGADA SERÀ");
+					turno = (turno + 1) % 2;
+				}
+				else {
+					System.out.println("LA CPU HA FALLAT");
+					turno = (turno + 1) % 2;
+				}
+			}
+		}
+		System.out.println("Final de la partida.");
+		if (puntsJugador1 > puntsCPU)
+			System.out.println("Guanyador Jugador 1");
+		else if (puntsCPU > puntsJugador1)
+			System.out.println("Guanayador Jugador 2");
+		else
+			System.out.println("Empat");
+
+		System.out.println("Punts Jugador 1: " + puntsJugador1);
+		System.out.println("Punts CPU: " + puntsCPU);
+
+		return;
+	}
+
+	public static boolean hacerJugadaCPUFacil(char[][] tablero, char[][] Secret, int turno) {
+		if (turno == 0) {
+			int filaCasella1, columnaCasella1;
+			int filaCasella2, columnaCasella2;
+			char valor1, valor2;
+
+			mostrarTauler(tablero);
+			do {
+				System.out.println("Si us plau, indica una casella que estigui tapada");
+				filaCasella1 = demanarFila();
+				columnaCasella1 = demanarColumna();
+			} while (!validaCasella(tablero, filaCasella1, columnaCasella1));
+
+			valor1 = demandarCasella(Secret, filaCasella1, columnaCasella1);
+			destapaCasella(tablero, filaCasella1, columnaCasella1, valor1);
+
+			mostrarTauler(tablero);
+
+			do {
+				System.out.println("Si us plau, indica una casella que estigui tapada");
+				filaCasella2 = demanarFila();
+				columnaCasella2 = demanarColumna();
+			} while (!validaCasella(tablero, filaCasella2, columnaCasella2));
+
+			valor2 = demandarCasella(Secret, filaCasella2, columnaCasella2);
+			destapaCasella(tablero, filaCasella2, columnaCasella2, valor2);
+
+			mostrarTauler(tablero);
+
+			if (valor1 == valor2)
+				return true;
+			else {
+				tapaCasella(tablero, filaCasella1, columnaCasella1);
+				tapaCasella(tablero, filaCasella2, columnaCasella2);
+				return false;
+			}
+		}
+		else {
+			int filaCasella1, columnaCasella1;
+			int filaCasella2, columnaCasella2;
+			char valor1, valor2;
+			
+			System.out.println("Torn de la CPU: ");
+			System.out.println();
+			
+			do {
+				filaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
+				columnaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
+			} while (!validaCasella(tablero, filaCasella1, columnaCasella1));
+
+			valor1 = demandarCasella(Secret, filaCasella1, columnaCasella1);
+			destapaCasella(tablero, filaCasella1, columnaCasella1, valor1);
+
+			do {
+				filaCasella2 = rd.nextInt(MEDIDA_DEL_TABLERO);
+				columnaCasella2 = rd.nextInt(MEDIDA_DEL_TABLERO);
+			} while (!validaCasella(tablero, filaCasella2, columnaCasella2));
+
+			valor2 = demandarCasella(Secret, filaCasella2, columnaCasella2);
+			destapaCasella(tablero, filaCasella2, columnaCasella2, valor2);
+
+			mostrarTauler(tablero);
+			System.out.println();
+
+			if (valor1 == valor2)
+				return true;
+			else {
+				tapaCasella(tablero, filaCasella1, columnaCasella1);
+				tapaCasella(tablero, filaCasella2, columnaCasella2);
+				return false;
+			}
+		}
+	}
+
+	public static int menu2() {
+		int opcio2;
+		System.out.println("Escull la dificultat: ");
+		System.out.println("1. Facil");
+		System.out.println("2. Dificil");
+		do {
+			opcio2 = sc.nextInt();
+			if (opcio2 != 1 && opcio2 != 2) {
+				System.out.println("Opcio no valida, escull entre 1 o 2");
+			}
+		} while (opcio2 != 1 && opcio2 != 2);
+		System.out.println();
+		return opcio2;
 	}
 
 	public static void partidaNormalV2(char[][] Matriu, char[][] Secret) {
@@ -246,14 +391,15 @@ public class MEMORY {
 		System.out.println("0. Sortir");
 		System.out.println("1. Jugar Partida 'Solitària'");
 		System.out.println("2. Jugar Partida  ' 1 VS 1 '");
+		System.out.println("3. Jugar Partida  ' 1 VS CPU '");
 
 		do {
 			System.out.print("Digues una Opció: ");
 			Opcio = sc.nextInt();
-			if (Opcio > 2 || Opcio < 0)
+			if (Opcio > 3 || Opcio < 0)
 				System.out.println("Opcio no vàlida");
 
-		} while (Opcio > 2 || Opcio < 0);
+		} while (Opcio > 3 || Opcio < 0);
 		System.out.println();
 		return Opcio;
 	}
