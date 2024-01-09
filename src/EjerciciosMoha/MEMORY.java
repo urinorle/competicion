@@ -13,7 +13,7 @@ public class MEMORY {
 		char Tauler[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
 		char Secret[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
 		int Opcio;
-		int opcio2;
+		int Opcio2;
 		System.out.println("Benvinguts al joc MEMORY!");
 		System.out.println();
 		do {
@@ -40,14 +40,15 @@ public class MEMORY {
 				inicialitzarTauler(Tauler);
 				posarPeces(Secret);
 				remenarPeces(Secret);
-				opcio2 = menu2();
-				if (opcio2 == 1) {
+				Opcio2 = menu2();
+				if (Opcio2 == 1) {
 					modeAleatori(Tauler, Secret);
+				} else {
+
 				}
-				else {
-					
-				}
+
 				break;
+
 			}
 		} while (Opcio != 0);
 
@@ -59,7 +60,7 @@ public class MEMORY {
 		int puntsCPU = 0;
 
 		while (casellesPendents(Matriu) >= 2) {
-			if (hacerJugadaCPUFacil(Matriu, Secret, turno)) {
+			if (hacerJugadaCPUfacil(Matriu, Secret, turno)) {
 				System.out.println("PARELLA");
 				if (turno == 0)
 					puntsJugador1++;
@@ -67,15 +68,14 @@ public class MEMORY {
 					puntsCPU++;
 
 				System.out.println("Punts Jugador 1: " + puntsJugador1);
-				System.out.println("Punts Jugador 2: " + puntsCPU);
+				System.out.println("Punts CPU: " + puntsCPU);
 			}
 
 			else {
 				if (turno == 0) {
-					System.out.println("UNA ALTRA VEGADA SERÀ");
+					System.out.println("NO HAS ENCERTAT");
 					turno = (turno + 1) % 2;
-				}
-				else {
+				} else {
 					System.out.println("LA CPU HA FALLAT");
 					turno = (turno + 1) % 2;
 				}
@@ -90,12 +90,13 @@ public class MEMORY {
 			System.out.println("Empat");
 
 		System.out.println("Punts Jugador 1: " + puntsJugador1);
-		System.out.println("Punts CPU: " + puntsCPU);
+		System.out.println("Punts Jugador 2: " + puntsCPU);
 
 		return;
+
 	}
 
-	public static boolean hacerJugadaCPUFacil(char[][] tablero, char[][] Secret, int turno) {
+	public static boolean hacerJugadaCPUfacil(char[][] tablero, char[][] Secret, int turno) {
 		if (turno == 0) {
 			int filaCasella1, columnaCasella1;
 			int filaCasella2, columnaCasella2;
@@ -131,15 +132,14 @@ public class MEMORY {
 				tapaCasella(tablero, filaCasella2, columnaCasella2);
 				return false;
 			}
-		}
-		else {
+		} else {
 			int filaCasella1, columnaCasella1;
 			int filaCasella2, columnaCasella2;
 			char valor1, valor2;
-			
-			System.out.println("Torn de la CPU: ");
+
+			System.out.println("Torn de la CPU:");
 			System.out.println();
-			
+
 			do {
 				filaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
 				columnaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
@@ -157,7 +157,6 @@ public class MEMORY {
 			destapaCasella(tablero, filaCasella2, columnaCasella2, valor2);
 
 			mostrarTauler(tablero);
-			System.out.println();
 
 			if (valor1 == valor2)
 				return true;
@@ -167,21 +166,42 @@ public class MEMORY {
 				return false;
 			}
 		}
+
+	}
+
+	public static int Menu() {
+		int Opcio;
+		System.out.println("0. Sortir");
+		System.out.println("1. Jugar Partida 'Solitària'");
+		System.out.println("2. Jugar Partida  ' 1 VS 1 '");
+		System.out.println("3. Jugar Partida  ' 1 VS CPU '");
+
+		do {
+			System.out.print("Digues una Opció: ");
+			Opcio = sc.nextInt();
+			if (Opcio > 3 || Opcio < 0)
+				System.out.println("Opcio no vàlida");
+
+		} while (Opcio > 3 || Opcio < 0);
+		System.out.println();
+		return Opcio;
 	}
 
 	public static int menu2() {
-		int opcio2;
-		System.out.println("Escull la dificultat: ");
-		System.out.println("1. Facil");
-		System.out.println("2. Dificil");
+		int Opcio2;
+		System.out.println("Escull nivell de dificultat:");
+		System.out.println("1. EASY");
+		System.out.println("2. HARD");
+
 		do {
-			opcio2 = sc.nextInt();
-			if (opcio2 != 1 && opcio2 != 2) {
-				System.out.println("Opcio no valida, escull entre 1 o 2");
-			}
-		} while (opcio2 != 1 && opcio2 != 2);
+			Opcio2 = sc.nextInt();
+			if (Opcio2 != 2 && Opcio2 != 1)
+				System.out.println("Opció no vàlida, escull entre 1 o 2");
+
+		} while (Opcio2 > 2 || Opcio2 < 1);
 		System.out.println();
-		return opcio2;
+		return Opcio2;
+
 	}
 
 	public static void partidaNormalV2(char[][] Matriu, char[][] Secret) {
@@ -202,7 +222,7 @@ public class MEMORY {
 			}
 
 			else {
-				System.out.println("UNA ALTRA VEGADA SERÀ");
+				System.out.println("NO HAS ENCERTAT");
 				turno = (turno + 1) % 2;
 			}
 		}
@@ -225,7 +245,7 @@ public class MEMORY {
 			if (hacerJugada(Matriu, Secret))
 				System.out.println("PARELLA");
 			else
-				System.out.println("UNA ALTRA VEGADA SERÀ");
+				System.out.println("NO HAS ENCERTAT");
 
 		return;
 	}
@@ -384,24 +404,6 @@ public class MEMORY {
 			}
 		}
 
-	}
-
-	public static int Menu() {
-		int Opcio;
-		System.out.println("0. Sortir");
-		System.out.println("1. Jugar Partida 'Solitària'");
-		System.out.println("2. Jugar Partida  ' 1 VS 1 '");
-		System.out.println("3. Jugar Partida  ' 1 VS CPU '");
-
-		do {
-			System.out.print("Digues una Opció: ");
-			Opcio = sc.nextInt();
-			if (Opcio > 3 || Opcio < 0)
-				System.out.println("Opcio no vàlida");
-
-		} while (Opcio > 3 || Opcio < 0);
-		System.out.println();
-		return Opcio;
 	}
 
 	public static int demanarColumna() {
