@@ -9,7 +9,7 @@ public class TRES_EN_RATLLA {
 		int opcio;
 		System.out
 				.println("ESCOGE UNA DE LAS SIGUIENTES OPCIONES:\n" + "1.- Mostrar ayuda\n" + "2.- Definir jugadores\n"
-						+ "3.- Mostrar jugadores \n" + "4.- Jugar partida\\n" + "5.- Cerrar programa");
+						+ "3.- Mostrar jugadores \n" + "4.- Jugar partida\n" + "5.- Cerrar programa");
 		opcio = sc.nextInt();
 
 		switch (opcio) {
