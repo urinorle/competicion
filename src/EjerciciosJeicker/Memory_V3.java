@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Memory_V2 {
+public class Memory_V3 {
+
 	static Scanner sc = new Scanner(System.in);
 	static Random rd = new Random();
 	static final int val = 4;
@@ -15,42 +16,54 @@ public class Memory_V2 {
 		char[][] tauler = new char[val][val];
 		char[][] secret = new char[val][val];
 		int opcio;
+		int opcio2;
 		int cont = 0;
 		do {
-			opcio = menu();
-			switch (opcio) {
-			default:
-			case 0:
-				break;
-			case 1:
-				Inicialitzar(tauler);
-				break;
-			case 2:
-				Mostrar(tauler);
-				break;
-			case 3:
-				InicialitzaSecret(secret);
-				break;
-			case 4:
-				TriaCasella(tauler, secret);
-				break;
-			case 5:
-				cont = 0;
-				for (int i=0;i<val;i++) {
-					for(int j=0;j<val;j++) {
-						if(tauler[i][j] == '?') {
-							cont++;
-						}
-					}
+			opcio = home();
+			if (opcio == 0) {
+				opcio2 = menu();
+				switch (opcio2) {
+				default:
+				case 0:
+					break;
+				case 1:
+					Inicialitzar(tauler);
+					break;
+				case 2:
+					Mostrar(tauler);
+					break;
+				case 3:
+					InicialitzaSecret(secret);
+					break;
+				case 4:
+					TriaCasella(tauler, secret);
+					break;
+				case 5:
+					ferJugada(tauler, secret);
+					break;
 				}
-				System.out.println("El numero de casillas que quedan sin Destapar es:" + cont);
-				break;
-			case 6:
-				ferJugada(tauler, secret);
-				break;
 			}
+			else if (opcio == 1) {
+				
+			}
+
 		}while(opcio != 0);
 		
+	}
+	
+	private static int home() {
+		int opcio;
+		System.out.println("0.- Partida d'un Jugador");
+		System.out.println("1.- Partida de dos Jugadors");
+		do {
+			System.out.println("Tria una opció");
+			opcio = sc.nextInt();
+			if (opcio > 1 || opcio < 0) {
+				System.out.println("Opció Invalida");
+			}
+		} while(opcio > 1 || opcio < 0);
+		System.out.println();
+		return opcio;
 	}
 	
 	private static int menu() {
@@ -72,6 +85,26 @@ public class Memory_V2 {
 		System.out.println();
 		return opcio;
 	}
+	
+	private static int menu2() {
+		int opcio;
+		System.out.println("0.- Sortir");
+		System.out.println("1.- Inicialitzar Tauler");
+		System.out.println("2.- Mostrar Tauler");
+		System.out.println("3.- Remanar Peces");
+		System.out.println("4.- Mostrar Puntuació");
+		System.out.println("5.- Fer Jugada");
+		do {
+			System.out.println("Tria una opció");
+			opcio = sc.nextInt();
+			if (opcio > 5 || opcio < 0) {
+				System.out.println("Opció Invalida");
+			}
+		} while(opcio > 5 || opcio < 0);
+		System.out.println();
+		return opcio;
+	}
+	
 	private static void Inicialitzar(char[][] matriu) {
 		for (int i=0;i<val;i++) {
 			for (int k=0;k<val;k++) {
