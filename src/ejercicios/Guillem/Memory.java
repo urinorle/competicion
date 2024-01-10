@@ -12,6 +12,8 @@ public class Memory {
 	public static void main(String[] args) {
 		char Tauler[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
 		char Secret[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
+		char Brain[][] = new char[MEDIDA_DEL_TABLERO][MEDIDA_DEL_TABLERO];
+		char[] Encerts = new char[8];
 		int Opcio;
 		int opcio2;
 		System.out.println("Benvinguts al joc MEMORY!");
@@ -45,12 +47,149 @@ public class Memory {
 					modeAleatori(Tauler, Secret);
 				}
 				else {
-					
+					modeInteligent(Tauler, Secret, Brain, Encerts);
 				}
 				break;
 			}
 		} while (Opcio != 0);
 
+	}
+
+	public static void modeInteligent(char[][] Matriu, char[][] Secret, char[][] Brain, char[] Encerts) {
+		int turno = 0;
+		int puntsJugador1 = 0;
+		int puntsCPU = 0;
+
+		while (casellesPendents(Matriu) >= 2) {
+			if (hacerJugadaCPUDificil(Matriu, Secret, turno, Brain, Encerts)) {
+				System.out.println("PARELLA");
+				if (turno == 0)
+					puntsJugador1++;
+				else
+					puntsCPU++;
+
+				System.out.println("Punts Jugador 1: " + puntsJugador1);
+				System.out.println("Punts Jugador 2: " + puntsCPU);
+			}
+
+			else {
+				if (turno == 0) {
+					System.out.println("UNA ALTRA VEGADA SERÀ");
+					turno = (turno + 1) % 2;
+				}
+				else {
+					System.out.println("LA CPU HA FALLAT");
+					turno = (turno + 1) % 2;
+				}
+			}
+		}
+		System.out.println("Final de la partida.");
+		if (puntsJugador1 > puntsCPU)
+			System.out.println("Guanyador Jugador 1");
+		else if (puntsCPU > puntsJugador1)
+			System.out.println("Guanayador Jugador 2");
+		else
+			System.out.println("Empat");
+
+		System.out.println("Punts Jugador 1: " + puntsJugador1);
+		System.out.println("Punts CPU: " + puntsCPU);
+
+		return;
+		
+	}
+
+	public static boolean hacerJugadaCPUDificil(char[][] tablero, char[][] Secret, int turno, char[][] Brain, char[] Encerts) {
+		if (turno == 0) {
+			int filaCasella1, columnaCasella1;
+			int filaCasella2, columnaCasella2;
+			char valor1, valor2;
+
+			mostrarTauler(tablero);
+			do {
+				System.out.println("Si us plau, indica una casella que estigui tapada");
+				filaCasella1 = demanarFila();
+				columnaCasella1 = demanarColumna();
+			} while (!validaCasella(tablero, filaCasella1, columnaCasella1));
+			
+			valor1 = demandarCasella(Secret, filaCasella1, columnaCasella1);
+			destapaCasella(tablero, filaCasella1, columnaCasella1, valor1);
+
+			mostrarTauler(tablero);
+
+			do {
+				System.out.println("Si us plau, indica una casella que estigui tapada");
+				filaCasella2 = demanarFila();
+				columnaCasella2 = demanarColumna();
+			} while (!validaCasella(tablero, filaCasella2, columnaCasella2));
+
+			
+			valor2 = demandarCasella(Secret, filaCasella2, columnaCasella2);
+			destapaCasella(tablero, filaCasella2, columnaCasella2, valor2);
+			
+			CPUbrain(filaCasella1, columnaCasella1, columnaCasella2, columnaCasella2, Brain, Secret, turno, Encerts);
+			
+			mostrarTauler(tablero);
+
+			if (valor1 == valor2)
+				return true;
+			else {
+				tapaCasella(tablero, filaCasella1, columnaCasella1);
+				tapaCasella(tablero, filaCasella2, columnaCasella2);
+				return false;
+			}
+		}
+		else {
+			
+			int filaCasella1, columnaCasella1;
+			int filaCasella2, columnaCasella2;
+			char valor1, valor2;
+			
+			System.out.println("Torn de la CPU: ");
+			System.out.println();
+			
+			do {
+				filaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
+				columnaCasella1 = rd.nextInt(MEDIDA_DEL_TABLERO);
+			} while (!validaCasella(tablero, filaCasella1, columnaCasella1));
+
+			valor1 = demandarCasella(Secret, filaCasella1, columnaCasella1);
+			destapaCasella(tablero, filaCasella1, columnaCasella1, valor1);
+
+			do {
+				filaCasella2 = rd.nextInt(MEDIDA_DEL_TABLERO);
+				columnaCasella2 = rd.nextInt(MEDIDA_DEL_TABLERO);
+			} while (!validaCasella(tablero, filaCasella2, columnaCasella2));
+
+			valor2 = demandarCasella(Secret, filaCasella2, columnaCasella2);
+			destapaCasella(tablero, filaCasella2, columnaCasella2, valor2);
+
+			mostrarTauler(tablero);
+			System.out.println();
+
+			if (valor1 == valor2)
+				return true;
+			else {
+				tapaCasella(tablero, filaCasella1, columnaCasella1);
+				tapaCasella(tablero, filaCasella2, columnaCasella2);
+				return false;
+			}
+		}
+	}
+
+	public static int CPUbrain(int filaCasella1, int columnaCasella1, int filaCasella2, int columnaCasella2, char[][] Brain, char[][] Secret, int Turno, char[] encerts) {
+		if (Turno == 0) {
+			Brain[filaCasella1][columnaCasella1] = Secret[filaCasella1][columnaCasella1];
+			Brain[filaCasella2][columnaCasella2] = Secret[filaCasella2][columnaCasella2];
+		}
+		
+		if (Turno == 1) {
+			for (int i = 0; i < MEDIDA_DEL_TABLERO; i++) {
+				for (int j = 0; i < MEDIDA_DEL_TABLERO; j++) {
+					
+				}
+			}
+		}
+		return 0;
 	}
 
 	public static void modeAleatori(char[][] Matriu, char[][] Secret) {
