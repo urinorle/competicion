@@ -73,10 +73,10 @@ public class MEMORY {
 
 			else {
 				if (turno == 0) {
-					System.out.println("NO HAS ENCERTAT");
+					System.out.println("NO HAS ENCERTAT\n");
 					turno = (turno + 1) % 2;
 				} else {
-					System.out.println("LA CPU HA FALLAT");
+					System.out.println("LA CPU HA FALLAT\n");
 					turno = (turno + 1) % 2;
 				}
 			}
@@ -89,7 +89,7 @@ public class MEMORY {
 		else
 			System.out.println("Empat");
 
-		System.out.println("Punts Jugador 1: " + puntsJugador1);
+		System.out.println("\nPunts Jugador 1: " + puntsJugador1);
 		System.out.println("Punts Jugador 2: " + puntsCPU);
 
 		return;
@@ -211,7 +211,7 @@ public class MEMORY {
 
 		while (casellesPendents(Matriu) >= 2) {
 			if (hacerJugada(Matriu, Secret)) {
-				System.out.println("PARELLA");
+				System.out.println("PARELLA\n");
 				if (turno == 0)
 					puntsJugador1++;
 				else
@@ -219,10 +219,11 @@ public class MEMORY {
 
 				System.out.println("Punts Jugador 1: " + puntsJugador1);
 				System.out.println("Punts Jugador 2: " + puntsJugador2);
+				System.out.println();
 			}
 
 			else {
-				System.out.println("NO HAS ENCERTAT");
+				System.out.println("NO HAS ENCERTAT\n");
 				turno = (turno + 1) % 2;
 			}
 		}
@@ -245,7 +246,7 @@ public class MEMORY {
 			if (hacerJugada(Matriu, Secret))
 				System.out.println("PARELLA");
 			else
-				System.out.println("NO HAS ENCERTAT");
+				System.out.println("NO HAS ENCERTAT\n");
 
 		return;
 	}
@@ -394,6 +395,7 @@ public class MEMORY {
 			System.out.println();
 		}
 		System.out.println("  0 1 2 3");
+		System.out.println();
 
 	}
 
@@ -411,6 +413,7 @@ public class MEMORY {
 		do {
 			System.out.println("Diguem la columna que vols");
 			Columna = sc.nextInt();
+			System.out.println();
 			if (Columna < 0 || Columna >= MEDIDA_DEL_TABLERO)
 				System.out.println("Si us plau, entre 0 i " + (MEDIDA_DEL_TABLERO - 1));
 		} while (Columna < 0 || Columna >= MEDIDA_DEL_TABLERO);
