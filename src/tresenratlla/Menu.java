@@ -4,8 +4,14 @@ import java.util.Scanner;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
+	static final int mesura = 3;
 
 	public static void main(String[] args) {
+
+		char[][] tauler = new char[mesura][mesura];
+
+		Jugadors j1 = null;
+		Jugadors j2 = null;
 
 		int a;
 		do {
@@ -18,13 +24,31 @@ public class Menu {
 				Ajuda.info();
 				break;
 			case 2:
-				
+				j1 = Jugadors.definirjugador();
+				j2 = Jugadors.definirjugador();
 				break;
 			case 3:
-			
+				menu2();
+				int opcio = sc.nextInt();
+				switch (opcio) {
+				case 1:
+					Joc.inicialitzar(j1, tauler);
+					if (j1 == null) {
+						break;
+					}
+					Joc.mostrar(tauler);
+					Joc.jugada();
+					break;
+				case 2:
+					j1 = Jugadors.definirjugador();
+					Joc.inicialitzar(j1, tauler);
+					Joc.mostrar(tauler);
+					Joc.jugada();//aqui es jugada contra bot es diferent a jugada normal cal crear una altra funcio.
+					break;
+				}
 				break;
 			case 4:
-				
+				Jugadors.veureJugador(j1, j2);
 				break;
 			case 0:
 				break;
@@ -44,6 +68,11 @@ public class Menu {
 		System.out.println("0.- Sortir");
 		return;
 
+	}
+
+	public static void menu2() {
+		System.out.println("1.- 1vs1");
+		System.out.println("2.- 1vsCPU");
 	}
 
 }
