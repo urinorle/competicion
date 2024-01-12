@@ -27,7 +27,7 @@ public class Joc {
 		}
 	}
 
-	public static void jugada() { //a
+	public static void jugada() { 
 		System.out.println("Comença el j1");
 		
 	}
