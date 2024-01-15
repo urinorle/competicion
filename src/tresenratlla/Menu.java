@@ -36,14 +36,13 @@ public class Menu {
 					if (j1 == null) {
 						break;
 					}
-					Joc.mostrar(tauler);
-					Joc.jugada();
+					Joc.jugada(tauler, j1, j2);
 					break;
 				case 2:
 					j1 = Jugadors.definirjugador();
 					Joc.inicialitzar(j1, tauler);
 					Joc.mostrar(tauler);
-					Joc.jugada();//aqui es jugada contra bot es diferent a jugada normal cal crear una altra funcio
+					Joc.jugada(tauler, j1, j2);//aqui es jugada contra bot es diferent a jugada normal cal crear una altra funcio
 					break;
 				}
 				break;
