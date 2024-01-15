@@ -62,10 +62,11 @@ public class MEMORY {
 		while (casellesPendents(Matriu) >= 2) {
 			if (hacerJugadaCPUfacil(Matriu, Secret, turno)) {
 				System.out.println("PARELLA");
-				if (turno == 0)
+				if (turno == 0) {
 					puntsJugador1++;
-				else
+				} else {
 					puntsCPU++;
+				}
 
 				System.out.println("Punts Jugador 1: " + puntsJugador1);
 				System.out.println("Punts CPU: " + puntsCPU);
@@ -73,6 +74,11 @@ public class MEMORY {
 
 			else {
 				if (turno == 0) {
+					try {
+						Thread.sleep(1500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					System.out.println("NO HAS ENCERTAT\n");
 					turno = (turno + 1) % 2;
 				} else {
@@ -208,25 +214,41 @@ public class MEMORY {
 		int turno = 0;
 		int puntsJugador1 = 0;
 		int puntsJugador2 = 0;
-
-		while (casellesPendents(Matriu) >= 2) {
+		System.out.println("Torn del jugador " + (turno+1));
+		System.out.println();
+		if(casellesPendents(Matriu)>2) {
 			if (hacerJugada(Matriu, Secret)) {
 				System.out.println("PARELLA\n");
+				System.out.println("Punts Jugador 1: " + puntsJugador1);
+				System.out.println("Punts Jugador 2: " + puntsJugador2);
+				System.out.println();
 				if (turno == 0)
 					puntsJugador1++;
 				else
 					puntsJugador2++;
-
-				System.out.println("Punts Jugador 1: " + puntsJugador1);
-				System.out.println("Punts Jugador 2: " + puntsJugador2);
-				System.out.println();
 			}
 
 			else {
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				System.out.println("NO HAS ENCERTAT\n");
 				turno = (turno + 1) % 2;
+				System.out.println("Torn del jugador " + (turno+1));
+				System.out.println();
+			}
+		} else {
+			if (hacerJugada(Matriu, Secret)) {
+				System.out.println();
+				if (turno == 0)
+					puntsJugador1++;
+				else
+					puntsJugador2++;
 			}
 		}
+		
 		System.out.println("Final de la partida.");
 		if (puntsJugador1 > puntsJugador2)
 			System.out.println("Guanyador Jugador 1");
@@ -243,10 +265,18 @@ public class MEMORY {
 
 	public static void partidaSolitaria(char[][] Matriu, char[][] Secret) {
 		while (casellesPendents(Matriu) >= 2)
-			if (hacerJugada(Matriu, Secret))
+			if (hacerJugada(Matriu, Secret)) {
 				System.out.println("PARELLA");
-			else
+				System.out.println();
+			} else {
 				System.out.println("NO HAS ENCERTAT\n");
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}
 
 		return;
 	}
