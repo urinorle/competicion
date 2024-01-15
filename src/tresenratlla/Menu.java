@@ -42,7 +42,7 @@ public class Menu {
 					j1 = Jugadors.definirjugador();
 					Joc.inicialitzar(j1, tauler);
 					Joc.mostrar(tauler);
-					Joc.jugada(tauler, j1, j2);//aqui es jugada contra bot es diferent a jugada normal cal crear una altra funcio
+					Joc.jugada(tauler, j1, j2);//aqui es jugada contra bot es diferent a jugada normal cal crear una altra funciu
 					break;
 				}
 				break;

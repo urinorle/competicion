@@ -32,7 +32,7 @@ public class Joc {
 		Scanner sc = new Scanner(System.in);
 		boolean j1win = false;
 		boolean j2win = false;
-		boolean empate = false; // es la condicion por si el tablero esta lleno y no hay ganadores EMPATE
+		boolean empate = false; // es la condicion por si el tablero esta lleno i no hay ganadores EMPATE
 		int fila;
 		int columna;
 		do {
