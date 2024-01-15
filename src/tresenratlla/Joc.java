@@ -59,7 +59,7 @@ public class Joc {
 			for (int i = 0; i < Menu.mesura; i++) {
 				for (int j = 0; j < Menu.mesura; j++) {
 					if (tauler[i][j] != '-') {
-						empate = true;
+						empate = true; //mod
 					}
 				}
 			}
