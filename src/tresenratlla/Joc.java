@@ -28,14 +28,14 @@ public class Joc {
 	}
 
 	public static void jugada(char[][] tauler, Jugadors j1, Jugadors j2) { 
-		System.out.println("Torn de " + j1);
 		Scanner sc = new Scanner(System.in);
 		boolean j1win = false;
 		boolean j2win = false;
-		boolean empate = false; // es la condicion por si el tablero esta lleno i no hay ganadores EMPATE
+		boolean empate = true; // es la condicion por si el tablero esta lleno i no hay ganadores EMPATE
 		int fila;
 		int columna;
 		do {
+			System.out.println("Torn de " + j1.nom);
 			System.out.println("Posa la X: ");
 			System.out.println();
 			System.out.println("Escull una fila: ");
@@ -45,7 +45,9 @@ public class Joc {
 			 tauler[fila][columna] = 'X';
 			 
 			 verificarj1(j1win, tauler);
+			 mostrar(tauler);
 			 
+			 System.out.println("Torn de " + j2.nom);
 			 System.out.println("Posa la O: ");
 				System.out.println();
 				System.out.println("Escull una fila: ");
@@ -55,16 +57,17 @@ public class Joc {
 				 tauler[fila][columna] = 'O';
 				 
 			verificarj2(j2win, tauler);
+			mostrar(tauler);
 			
 			for (int i = 0; i < Menu.mesura; i++) {
 				for (int j = 0; j < Menu.mesura; j++) {
-					if (tauler[i][j] != '-') {
-						empate = true; //mod
+					if (tauler[i][j] == '-') {
+						empate = false;
 					}
 				}
 			}
 			 
-		} while (j1win == false || j2win == false);
+		} while (j1win == false || j2win == false || empate == false);
 	}
 
 	private static boolean verificarj2(boolean j2win, char[][] tauler) {
