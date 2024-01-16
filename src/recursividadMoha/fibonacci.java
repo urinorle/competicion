@@ -3,12 +3,23 @@ package recursividadMoha;
 import java.util.Scanner;
 
 public class fibonacci {
-	public static int aux = 1;
-
 	public static void main(String[] args) {
-		System.out.println("Calculem el número de Fibonnacci del número que diguis: ");
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
+
+		System.out.println("Sucesión de Fibonacci hasta el número " + n + ":");
+
+		for (int i = 0; i < n; i++) {
+			System.out.print(calcularFibonacci(i) + " ");
+		}
+	}
+
+	public static int calcularFibonacci(int n) {
+		if (n <= 1) {
+			return n;
+		} else {
+			return calcularFibonacci(n - 1) + calcularFibonacci(n - 2);
+		}
 	}
 
 }
