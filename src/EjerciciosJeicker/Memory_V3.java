@@ -63,7 +63,7 @@ public class Memory_V3 {
 		int BOT = 0;
 		
 		while (casellesPendents(Matriu) >= 2) {
-			if (hacerJugadaCPUDificil(Matriu, Secret, turno, Brain)) {
+			if (hacerJugadaCPUDificil(Matriu, Secret, turno, Brain, Acierto)) {
 				System.out.println("PARELLA");
 				if (turno == 0)
 					puntsJugador1++;

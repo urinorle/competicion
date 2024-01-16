@@ -30,6 +30,10 @@ public class Menu {
                                 break;
                             case 2:
                                 Partida.inicialitzar(j1, tablero);
+                                if(j1 == null) {
+                                	break;
+                                }
+                                Partida.jugada(tablero, j1, j2);
                                 break;
                             case 3:
                                 Jugadors.veureJugador(j1, j2);
