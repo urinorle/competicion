@@ -41,18 +41,18 @@ public class Joc {
 			System.out.println("Escull una fila: ");
 			do {
 				fila = sc.nextInt();
-				if (fila < 0 && fila > 2) {
+				if (fila < 0 || fila > 2) {
 					System.out.println("Escull un altre posicio, ha de ser entre 0 i 2: ");
 				}
-			} while (fila < 0 && fila > 2);
+			} while (fila < 0 || fila > 2);
 
 			System.out.println("Escull una columna: ");
 			do {
 				columna = sc.nextInt();
-				if (columna < 0 && columna > 2) {
+				if (columna < 0 || columna > 2) {
 					System.out.println("Escull un altre posicio, ha de ser entre 0 i 2: ");
 				}
-			} while (columna < 0 && columna > 2);
+			} while (columna < 0 || columna > 2);
 			
 			tauler[fila][columna] = 'X';
 
@@ -65,18 +65,18 @@ public class Joc {
 			System.out.println("Escull una fila: ");
 			do {
 				fila = sc.nextInt();
-				if (fila < 0 && fila > 2) {
+				if (fila < 0 || fila > 2) {
 					System.out.println("Escull un altre posicio, ha de ser entre 0 i 2: ");
 				}
-			} while (fila < 0 && fila > 2);
+			} while (fila < 0 || fila > 2);
 			
 			System.out.println("Escull una columna: ");
 			do {
 				columna = sc.nextInt();
-				if (columna < 0 && columna > 2) {
+				if (columna < 0 || columna > 2) {
 					System.out.println("Escull un altre posicio, ha de ser entre 0 i 2: ");
 				}
-			} while (columna < 0 && columna > 2);
+			} while (columna < 0 || columna > 2);
 			
 			tauler[fila][columna] = 'O';
 
