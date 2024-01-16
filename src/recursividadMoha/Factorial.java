@@ -14,11 +14,15 @@ public class Factorial {
 	}
 
 	public static int calcularFactorial(int número) {
-		do {
+
+		if (número != 1 && número != 0) {
 			aux *= número;
 			número--;
-		} while (número != 1 && número != 0);
-		return aux;
+			calcularFactorial(número);
+		} else {
+			return aux;
+		}
+		return número;
 	}
 
 }
