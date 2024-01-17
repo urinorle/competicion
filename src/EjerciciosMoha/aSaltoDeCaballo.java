@@ -23,7 +23,7 @@ public class aSaltoDeCaballo {
 
 		while (verificarExistenciaDeB(tablero)) {
 			cont++;
-			hacerTransformación(tablero, Ax, Ay, cont);
+			hacerTransformación(tablero, cont);
 		}
 		System.out.println(cont);
 	}
@@ -40,7 +40,7 @@ public class aSaltoDeCaballo {
 		return flag;
 	}
 
-	public static void hacerTransformación(char[][] tablero, int ax, int ay, int cont) {
+	public static void hacerTransformación(char[][] tablero, int cont) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				
