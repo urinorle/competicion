@@ -16,14 +16,14 @@ public class aSaltoDeCaballo {
 		int Ay = AyFake - 1;
 		int Bx = BxFake - 1;
 		int By = ByFake - 1;
-		tablero[Ax][Ay] = 'A';
-		tablero[Bx][By] = 'B';
+		tablero[Ax][Ay] = '1';
+		tablero[Bx][By] = 'A';
 
 		int cont = 0;
 
 		while (verificarExistenciaDeB(tablero)) {
 			cont++;
-			hacerTransformación(tablero, cont);
+			hacerTransformación1(tablero, cont, Ax, Ay);
 		}
 		System.out.println(cont);
 	}
@@ -40,12 +40,18 @@ public class aSaltoDeCaballo {
 		return flag;
 	}
 
-	public static void hacerTransformación(char[][] tablero, int cont) {
+	public static void hacerTransformación1(char[][] tablero, int cont, int ax, int ay) {
+
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				
+				if ((Math.abs(ax - i) == 1 && Math.abs(ay - j) == 2)
+						|| (Math.abs(ax - i) == 2 && Math.abs(ay - j) == 1)) {
+					tablero[i][j] = (char) cont;
+				}
 			}
 		}
+
+		
 
 	}
 
