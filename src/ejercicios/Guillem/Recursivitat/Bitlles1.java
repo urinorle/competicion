@@ -19,13 +19,12 @@ public class Bitlles1 {
 	public static int total(int num) {
 		if (num == 0) {
 			return 0;
-		} 
+		}
 		if (num <= 1) {
 			return 1;
-		}  
-		return (num+total(num-1));
-		
-	}
+		}
+		return (num + total(num - 1));
 
 	}
 
+}
