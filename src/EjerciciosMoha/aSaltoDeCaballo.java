@@ -21,26 +21,11 @@ public class aSaltoDeCaballo {
 
 		int cont = 0;
 
-		if (!verificarExistenciaDeB(tablero)) {
-			System.out.println(cont);
-		} else {
+		while (verificarExistenciaDeB(tablero)) {
 			cont++;
-			hacerTransformación(tablero, Ax, Ay);
+			hacerTransformación(tablero, Ax, Ay, cont);
 		}
-	}
-
-	public static void hacerTransformación(char[][] tablero, int ax, int ay) {
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				int ireal = i - 1;
-				int jreal = j - 1;
-				if ((Math.abs(ax - ireal) == 2 && Math.abs(ay - jreal) == 1)
-						|| (Math.abs(ax - ireal) == 1 && Math.abs(ay - jreal) == 2)) {
-					tablero[ireal][jreal] = 'A';
-				}
-			}
-		}
-
+		System.out.println(cont);
 	}
 
 	public static boolean verificarExistenciaDeB(char[][] tablero) {
@@ -54,4 +39,14 @@ public class aSaltoDeCaballo {
 		}
 		return flag;
 	}
+
+	public static void hacerTransformación(char[][] tablero, int ax, int ay, int cont) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				
+			}
+		}
+
+	}
+
 }
