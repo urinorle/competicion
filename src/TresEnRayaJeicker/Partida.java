@@ -2,6 +2,8 @@ package TresEnRayaJeicker;
 
 import java.util.Scanner;
 
+import memory.Jugador;
+
 
 public class Partida {
 	static Scanner sc = new Scanner(System.in);
@@ -66,11 +68,18 @@ public class Partida {
 				}
 			}while(!desocupado);
 			
-			verificarj1(j1win, Tablero);
+			j1win = verificarj1(j1win, Tablero);
 			mostrar(Tablero);
 			
+			if(j1win) {
+				System.out.println("Gana " + j1.Name);
+				System.out.println();
+				j1.GamesWin = j1.GamesWin+1;
+				j2.GamesLoses = j2.GamesLoses + 1;
+				break;
+			}
+			
 			desocupado = false;
-			System.out.println();
 			System.out.println("Le toca a " + j2.Name);
 			do {
 				System.out.println("Escoge una fila: ");
@@ -91,16 +100,24 @@ public class Partida {
 				}while(Y < 0 || Y > 2);
 				
 				if (Tablero[X][Y] == '-') {
-					Tablero[X][Y] = 'X';
+					Tablero[X][Y] = 'O';
 					desocupado = true;
 				}
 				else {
 					System.out.println("Error, esa posición ya está ocupada. Por favor, elige otra posición.");
 				}
 			}while(!desocupado);
-			
-			verificarj1(j2win, Tablero);
+			desocupado = false;
+			j2win = verificarj2(j2win, Tablero);
 			mostrar(Tablero);
+			
+			if(j2win) {
+				System.out.println("Gana " + j2.Name);
+				System.out.println();
+				j2.GamesWin = j2.GamesWin + 1;
+				j1.GamesLoses = j1.GamesLoses + 1;
+				break;
+			}
 			
 			for (int i = 0;i < Menu.Medida;i++) {
 				for (int j11 = 0;j11 < Menu.Medida;j11++) {
@@ -117,25 +134,25 @@ public class Partida {
 	public static boolean verificarj1(boolean j1win, char[][] Tablero) {
 		
 		if (Tablero[0][0] == 'X' && Tablero[0][1] == 'X' && Tablero[0][2] == 'X') j1win = true;		
-		if (Tablero[1][0] == 'X' && Tablero[1][1] == 'X' && Tablero[1][2] == 'X') j1win = true;
-		if (Tablero[2][0] == 'X' && Tablero[2][1] == 'X' && Tablero[2][2] == 'X') j1win = true;
-		if (Tablero[0][0] == 'X' && Tablero[1][0] == 'X' && Tablero[2][0] == 'X') j1win = true;
-		if (Tablero[0][1] == 'X' && Tablero[1][1] == 'X' && Tablero[2][1] == 'X') j1win = true;
-		if (Tablero[0][2] == 'X' && Tablero[1][2] == 'X' && Tablero[2][2] == 'X') j1win = true;
-		if (Tablero[0][0] == 'X' && Tablero[1][1] == 'X' && Tablero[2][2] == 'X') j1win = true;
-		if (Tablero[2][0] == 'X' && Tablero[1][1] == 'X' && Tablero[0][2] == 'X') j1win = true;
-		return false;
+		else if (Tablero[1][0] == 'X' && Tablero[1][1] == 'X' && Tablero[1][2] == 'X') j1win = true;
+		else if (Tablero[2][0] == 'X' && Tablero[2][1] == 'X' && Tablero[2][2] == 'X') j1win = true;
+		else if (Tablero[0][0] == 'X' && Tablero[1][0] == 'X' && Tablero[2][0] == 'X') j1win = true;
+		else if (Tablero[0][1] == 'X' && Tablero[1][1] == 'X' && Tablero[2][1] == 'X') j1win = true;
+		else if (Tablero[0][2] == 'X' && Tablero[1][2] == 'X' && Tablero[2][2] == 'X') j1win = true;
+		else if (Tablero[0][0] == 'X' && Tablero[1][1] == 'X' && Tablero[2][2] == 'X') j1win = true;
+		else if (Tablero[2][0] == 'X' && Tablero[1][1] == 'X' && Tablero[0][2] == 'X') j1win = true;
+		return j1win;
 	}
 	
 	public static boolean verificarj2(boolean j2win, char[][] Tablero) {
 		if (Tablero[0][0] == 'O' && Tablero[0][1] == 'O' && Tablero[0][2] == 'O') j2win = true;
-		if (Tablero[1][0] == 'O' && Tablero[1][1] == 'O' && Tablero[1][2] == 'O') j2win = true;
-		if (Tablero[2][0] == 'O' && Tablero[2][1] == 'O' && Tablero[2][2] == 'O') j2win = true;
-		if (Tablero[0][0] == 'O' && Tablero[1][0] == 'O' && Tablero[2][0] == 'O') j2win = true;
-		if (Tablero[0][1] == 'O' && Tablero[1][1] == 'O' && Tablero[2][1] == 'O') j2win = true;
-		if (Tablero[0][2] == 'O' && Tablero[1][2] == 'O' && Tablero[2][2] == 'O') j2win = true;
-		if (Tablero[0][0] == 'O' && Tablero[1][1] == 'O' && Tablero[2][2] == 'O') j2win = true;
-		if (Tablero[2][0] == 'O' && Tablero[1][1] == 'O' && Tablero[0][2] == 'O') j2win = true;
-		return false;
+		else if (Tablero[1][0] == 'O' && Tablero[1][1] == 'O' && Tablero[1][2] == 'O') j2win = true;
+		else if (Tablero[2][0] == 'O' && Tablero[2][1] == 'O' && Tablero[2][2] == 'O') j2win = true;
+		else if (Tablero[0][0] == 'O' && Tablero[1][0] == 'O' && Tablero[2][0] == 'O') j2win = true;
+		else if (Tablero[0][1] == 'O' && Tablero[1][1] == 'O' && Tablero[2][1] == 'O') j2win = true;
+		else if (Tablero[0][2] == 'O' && Tablero[1][2] == 'O' && Tablero[2][2] == 'O') j2win = true;
+		else if (Tablero[0][0] == 'O' && Tablero[1][1] == 'O' && Tablero[2][2] == 'O') j2win = true;
+		else if (Tablero[2][0] == 'O' && Tablero[1][1] == 'O' && Tablero[0][2] == 'O') j2win = true;
+		return j2win;
 	}
 }

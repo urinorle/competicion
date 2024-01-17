@@ -6,8 +6,8 @@ import memory.Jugador;
 
 public class Jugadors {
 	String Name;
-	int GamesWin;
-	int GamesLoses;
+	int GamesWin = 0;
+	int GamesLoses = 0;
 	
 	static void veureJugador(Jugadors j, Jugadors j1) {
 		if (j != null) {
