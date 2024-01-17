@@ -73,6 +73,8 @@ public class Joc {
 				System.out.println();
 				System.out.println("El " + j1.nom + " ha guanyat!!");
 				System.out.println();
+				j1.partidesWin = j1.partidesWin+1;
+				j2.partidesLose = j2.partidesLose+1;
 				break;
 			}
 			empat(empate, tauler);
@@ -113,6 +115,8 @@ public class Joc {
 				System.out.println();
 				System.out.println("El " + j2.nom + " ha guanyat!!");
 				System.out.println();
+				j2.partidesWin = j2.partidesWin+1;
+				j1.partidesLose = j1.partidesLose+1;
 				break;
 			}
 			
