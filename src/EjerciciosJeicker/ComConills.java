@@ -14,7 +14,7 @@ public class ComConills {
 			int num2 = fibonacci(num);
 			System.out.println(num2);
 		}
-		//asasasas
+		
 	}
 
 	private static int fibonacci(int num) {

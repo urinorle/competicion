@@ -10,7 +10,7 @@ public class Barriles_Explosivos {
 		int medida = sc.nextInt();
 		int[][] tablero = new int[medida][medida];
 		
-		
+		//asasasas
 
 	}
 
