@@ -54,6 +54,7 @@ public class Menu {
 
 			default:
 				System.out.print("Opció incorrecte");
+				System.out.println();
 			}
 		} while (a != 0);
 		System.out.println("Adeu");
