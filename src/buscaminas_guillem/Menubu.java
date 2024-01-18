@@ -6,7 +6,6 @@ import tresenratlla.Jugadors;
 
 public class Menubu {
 	static Scanner sc = new Scanner(System.in);
-	static final int mesura = (Integer) null;
 
 	public static void main(String[] args) {
 
@@ -51,7 +50,10 @@ public class Menubu {
 			case 0:
 				break;
 			}
-
+			if (a < 0 || a > 4) {
+				System.out.println("Escull una opcio correcte: ");
+				break;
+			}
 		} while (a != 0);
 
 	}
