@@ -6,7 +6,7 @@ public class Jugadores {
 	String Name;
 	int GamesWin = 0;
 	int GamesLoses = 0;
-	
+	//a
 	static void veureJugador(Jugadores j, Jugadores j1) {
 		if (j != null) {
 			System.out.println();

@@ -5,9 +5,8 @@ import java.util.*;
 public class Menu {
 	
 	static Scanner sc = new Scanner(System.in);
-	static final int medida = (Integer) null;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		int a = 1;
 		Jugadores j1 = null;
 		Jugadores j2 = null;
@@ -17,6 +16,7 @@ public class Menu {
 			
 			switch(opcio) {
 			case 1:
+				Ayuda.Ayuda();
 				break;
 			case 2:
 				boolean b = false;
