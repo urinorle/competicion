@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class Menubu {
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		int x = 0;
+		int y = 0;
+		int mines = 0;
 
 		Players j1 = null;
 
@@ -22,36 +25,41 @@ public class Menubu {
 			}
 			switch (a) {
 			case 1:
-				try {
-					Ajuda.ajuda(args);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				Ajuda.ajuda(args);
 				break;
 			case 2:
 				menu2();
 				int b = sc.nextInt();
 				do {
+					if (b < 0 || b > 4) {
+						do {
+							System.out.println("Escull una opcio correcte: ");
+							b = sc.nextInt();
+						} while (b < 0 || b > 4);
+					}
 					switch (b) {
 					case 1:
-						Players.definirjugador();
+						x = 8;
+						y = 8;
+						mines = 10;
+						Game.inicializar(x, y, mines);
+						Game.mostrar(null, null, b, b);
+						j1 = Players.definirjugador();
 						break;
 					case 2:
-						Players.definirjugador();
+						x = 20;
+						j1 = Players.definirjugador();
 						break;
 					case 3:
-						Players.definirjugador();
+						j1 = Players.definirjugador();
 						break;
 					case 4:
-						Players.definirjugador();
+						j1 = Players.definirjugador();
 						break;
 					case 0:
 						break;
 					}
-					if (b < 0 || b > 4) {
-						System.out.println("Escull una opcio correcte: ");
-						break;
-					}
+
 				} while (b != 0);
 				break;
 			case 3:
