@@ -20,7 +20,7 @@ public class Menubu {
 			a = sc.nextInt();
 			switch (a) {
 			case 1:
-
+				
 				break;
 			case 2:
 				menu2();
