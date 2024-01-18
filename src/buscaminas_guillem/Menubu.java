@@ -2,24 +2,31 @@ package buscaminas_guillem;
 
 import java.util.Scanner;
 
-import tresenratlla.Jugadors;
-
 public class Menubu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		Players j1 = null;
-		Players j2 = null;
 
 		int a;
 
 		do {
 			menu();
 			a = sc.nextInt();
+			if (a < 0 || a > 4) {
+				do {
+					System.out.println("Escull una opcio correcte: ");
+					a = sc.nextInt();
+				} while (a < 0 || a > 4);
+			}
 			switch (a) {
 			case 1:
-
+				try {
+					Ajuda.ajuda(args);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 2:
 				menu2();
@@ -41,17 +48,18 @@ public class Menubu {
 					case 0:
 						break;
 					}
+					if (b < 0 || b > 4) {
+						System.out.println("Escull una opcio correcte: ");
+						break;
+					}
 				} while (b != 0);
 				break;
 			case 3:
 				break;
 			case 4:
+				Players.veureJugador(j1);
 				break;
 			case 0:
-				break;
-			}
-			if (a < 0 || a > 4) {
-				System.out.println("Escull una opcio correcte: ");
 				break;
 			}
 		} while (a != 0);
