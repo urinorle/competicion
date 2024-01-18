@@ -26,21 +26,20 @@ public class MENU {
 				do {
 					switch (b) {
 					case 1:
-						
+
 						break;
 					case 2:
-						
+
 						break;
 					case 3:
-						
+
 						break;
 					case 4:
-						
+
 						break;
 					case 0:
 						break;
-					}
-					if (a < 0 || a > 4) {
+					default:
 						System.out.println("Escull una opcio correcte: ");
 						break;
 					}
@@ -52,13 +51,13 @@ public class MENU {
 				break;
 			case 0:
 				break;
-			}
-			if (a < 0 || a > 4) {
+			default:
 				System.out.println("Escull una opcio correcte: ");
 				break;
+
 			}
 		} while (a != 0);
-		
+
 	}
 
 	private static void menuDificultats() {

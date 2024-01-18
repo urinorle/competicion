@@ -3,7 +3,7 @@ package buscaminas_guillem;
 public class Ajuda {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("Benviguts al Buscamines");
+		System.out.println("Benviguts al Buscami💣nes💣");
 		Thread.sleep(1500);
 		System.out.println("                 .               \r\n"
 				+ "                 .               \r\n"

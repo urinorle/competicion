@@ -49,7 +49,7 @@ public class AJUDA {
 	Thread.sleep(3500);
 	System.out.println();
 	System.out.println("A mesura que vagis seleccionant caselles,\nt'anirà sortint el número de mines que te al seu voltant. Ànims!");
-	
+	System.out.println();
 	}
 
 }
