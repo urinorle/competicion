@@ -46,7 +46,7 @@ public class AJUDA {
 	System.out.println("\n2º Després ja només et quedarà jugar:");
 	System.out.println();
 	System.out.println("Per guanyar al joc del buscamines hauràs de prèmer\ntotes les caselles del joc sense prèmer cap mina");
-	Thread.sleep(4500);
+	Thread.sleep(5000);
 	System.out.println();
 	System.out.println("A mesura que vagis seleccionant caselles,\nt'anirà sortint el número de mines que te al seu voltant. Ànims!");
 	System.out.println();

@@ -8,7 +8,7 @@ public class Players {
 	int partidesWin = 0;
 	int partidesLose = 0;
 	
-	static void veureJugador(Players j1, Players j2) {
+	static void veureJugador(Players j1) {
 		if (j1 != null) {
 			System.out.println("El jugador " + j1.nom + " ha guanyat " + j1.partidesWin + " ha perdut: " + j1.partidesLose);
 		}

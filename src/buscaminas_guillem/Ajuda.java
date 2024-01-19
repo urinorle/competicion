@@ -2,9 +2,8 @@ package buscaminas_guillem;
 
 public class Ajuda {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void ajuda(String[] args) throws InterruptedException {
 		System.out.println("Benviguts al Buscamines");
-		System.out.println("9️⃣8️⃣7️⃣6️⃣5️⃣4️⃣3️⃣2️⃣1️⃣");
 		Thread.sleep(1500);
 		System.out.println("                 .               \r\n"
 				+ "                 .               \r\n"
@@ -39,21 +38,18 @@ public class Ajuda {
 				+ "      +BMMMMMMMMMMMBY:           \r\n"
 				+ "        :+YRBBBRVt;");
 		
-	Thread.sleep(1000);
+	Thread.sleep(500);
 	System.out.println();
 	System.out.println("Disposes d'un menú d'opcions:\n"
 			+ "\n1º Hauràs d'escollir el nivell de\ndificultat que vulguis (també pots personalitzar\nel tauler a la teva mida i gust)");
-	Thread.sleep(3500);
+	Thread.sleep(4500);
 	System.out.println("\n2º Després ja només et quedarà jugar:");
 	System.out.println();
 	System.out.println("Per guanyar al joc del buscamines hauràs de prèmer\ntotes les caselles del joc sense prèmer cap mina");
-	Thread.sleep(3500);
+	Thread.sleep(5000);
 	System.out.println();
 	System.out.println("A mesura que vagis seleccionant caselles,\nt'anirà sortint el número de mines que te al seu voltant. Ànims!");
-	
+	System.out.println();
 	}
-	
-	
-	
 
 }

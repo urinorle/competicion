@@ -8,6 +8,9 @@ public class MENU {
 	public static void main(String[] args) {
 		int a;
 		boolean haElegidoNivel = false;
+		char[][] tablero = null;
+		char[][] secreto = null;
+
 		do {
 			menu();
 			a = sc.nextInt();
@@ -29,19 +32,30 @@ public class MENU {
 						x = 8;
 						y = 8;
 						mines = 10;
-						PROGRAMA.inicializarSecreto(x,y,mines);
+						tablero = new char[x][y];
+						secreto = new char[x][y];
+						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
+						PROGRAMA.inicializarTablero(x, y, secreto);
 						haElegidoNivel = true;
 						break;
 					case 2:
 						x = 16;
 						y = 16;
 						mines = 40;
+						tablero = new char[x][y];
+						secreto = new char[x][y];
+						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
+						PROGRAMA.inicializarTablero(x, y, secreto);
 						haElegidoNivel = true;
 						break;
 					case 3:
 						x = 16;
 						y = 30;
 						mines = 99;
+						tablero = new char[x][y];
+						secreto = new char[x][y];
+						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
+						PROGRAMA.inicializarTablero(x, y, secreto);
 						haElegidoNivel = true;
 						break;
 					case 4:
@@ -51,13 +65,17 @@ public class MENU {
 						y = sc.nextInt();
 						System.out.println("I quantes mines enterrem?");
 						mines = sc.nextInt();
+						tablero = new char[x][y];
+						secreto = new char[x][y];
+						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
+						PROGRAMA.inicializarTablero(x, y, secreto);
 						haElegidoNivel = true;
 						break;
 					case 0:
 						haElegidoNivel = false;
 						break;
 					default:
-						System.out.println("Escull una opcio correcte: ");
+						System.out.println("Escull una opció correcte: ");
 						System.out.println("");
 						break;
 					}
@@ -65,7 +83,7 @@ public class MENU {
 				break;
 			case 3:
 				if (haElegidoNivel) {
-					/* Jugar */
+					PROGRAMA.jugar();
 				} else {
 					System.out.println("Abans has de seleccionar un nivell");
 					System.out.println();
@@ -84,10 +102,8 @@ public class MENU {
 			default:
 				System.out.println("Escull una opcio correcte: ");
 				break;
-
 			}
 		} while (a != 0);
-
 	}
 
 	private static void menuDificultats() {
@@ -104,7 +120,16 @@ public class MENU {
 		System.out.println("3.➡️ Jugar Partida");
 		System.out.println("4.➡️ Veure Ranking");
 		System.out.println("0.➡️ Sortir");
-
 	}
 
+	public static int[] menuJugar() {
+	    System.out.println("Digues quina casella vols trepitjar.");
+	    System.out.println("Escull fila:");
+	    int filaAdestapar = sc.nextInt();
+	    System.out.println("Escull columna:");
+	    int columnaAdestapar = sc.nextInt();
+	    
+	    int[] coordenadas = {filaAdestapar, columnaAdestapar};
+	    return coordenadas;
+	}
 }

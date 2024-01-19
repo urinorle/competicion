@@ -2,56 +2,72 @@ package buscaminas_guillem;
 
 import java.util.Scanner;
 
-import tresenratlla.Jugadors;
-
 public class Menubu {
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		int x = 0;
+		int y = 0;
+		int mines = 0;
 
 		Players j1 = null;
-		Players j2 = null;
 
 		int a;
 
 		do {
 			menu();
 			a = sc.nextInt();
+			if (a < 0 || a > 4) {
+				do {
+					System.out.println("Escull una opcio correcte: ");
+					a = sc.nextInt();
+				} while (a < 0 || a > 4);
+			}
 			switch (a) {
 			case 1:
-
+				Ajuda.ajuda(args);
 				break;
 			case 2:
 				menu2();
 				int b = sc.nextInt();
 				do {
+					if (b < 0 || b > 4) {
+						do {
+							System.out.println("Escull una opcio correcte: ");
+							b = sc.nextInt();
+						} while (b < 0 || b > 4);
+					}
 					switch (b) {
 					case 1:
-						Players.definirjugador();
+						x = 8;
+						y = 8;
+						mines = 10;
+						Game.inicializar(x, y, mines);
+						Game.mostrar(null, null, b, b);
+						j1 = Players.definirjugador();
 						break;
 					case 2:
-						Players.definirjugador();
+						x = 20;
+						j1 = Players.definirjugador();
 						break;
 					case 3:
-						Players.definirjugador();
+						j1 = Players.definirjugador();
 						break;
 					case 4:
-						Players.definirjugador();
+						j1 = Players.definirjugador();
 						break;
 					case 0:
 						break;
 					}
+
 				} while (b != 0);
 				break;
 			case 3:
 				break;
 			case 4:
+				Players.veureJugador(j1);
 				break;
 			case 0:
-				break;
-			}
-			if (a < 0 || a > 4) {
-				System.out.println("Escull una opcio correcte: ");
 				break;
 			}
 		} while (a != 0);
