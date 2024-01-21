@@ -70,7 +70,6 @@ public class PROGRAMA {
 			}
 			System.out.println("");
 		}
-
 	}
 
 	public static void mostrarSecreto(int x, int y) {
@@ -81,10 +80,7 @@ public class PROGRAMA {
 			System.out.println("");
 		}
 	}
-
-	public static void jugar() {
-		/*JUGAR*/
-		
-	}
+	
+	
 
 }

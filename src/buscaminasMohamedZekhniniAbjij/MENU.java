@@ -83,7 +83,6 @@ public class MENU {
 				break;
 			case 3:
 				if (haElegidoNivel) {
-					PROGRAMA.jugar();
 				} else {
 					System.out.println("Abans has de seleccionar un nivell");
 					System.out.println();
