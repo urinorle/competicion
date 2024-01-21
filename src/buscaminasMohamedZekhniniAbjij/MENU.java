@@ -7,6 +7,7 @@ public class MENU {
 
 	public static void main(String[] args) {
 		int a;
+		int x = 0, y = 0, mines = 0;
 		boolean haElegidoNivel = false;
 		char[][] tablero = null;
 		char[][] secreto = null;
@@ -26,7 +27,7 @@ public class MENU {
 				menuDificultats();
 				int b = sc.nextInt();
 				do {
-					int x, y, mines;
+
 					switch (b) {
 					case 1:
 						x = 8;
@@ -83,6 +84,7 @@ public class MENU {
 				break;
 			case 3:
 				if (haElegidoNivel) {
+					JUGAR.jugar(x, y, tablero, secreto, mines);
 				} else {
 					System.out.println("Abans has de seleccionar un nivell");
 					System.out.println();
@@ -122,13 +124,13 @@ public class MENU {
 	}
 
 	public static int[] menuJugar() {
-	    System.out.println("Digues quina casella vols trepitjar.");
-	    System.out.println("Escull fila:");
-	    int filaAdestapar = sc.nextInt();
-	    System.out.println("Escull columna:");
-	    int columnaAdestapar = sc.nextInt();
-	    
-	    int[] coordenadas = {filaAdestapar, columnaAdestapar};
-	    return coordenadas;
+		System.out.println("Digues quina casella vols trepitjar.");
+		System.out.println("Escull fila:");
+		int filaAdestapar = sc.nextInt();
+		System.out.println("Escull columna:");
+		int columnaAdestapar = sc.nextInt();
+
+		int[] coordenadas = { filaAdestapar, columnaAdestapar };
+		return coordenadas;
 	}
 }
