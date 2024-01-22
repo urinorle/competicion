@@ -29,7 +29,7 @@ public class PROGRAMA {
 					int bombasCercanas = contarBombasCercanas(secreto, i, j, x, y);
 					if (bombasCercanas > 0) {
 						secreto[i][j] = (char) (bombasCercanas + '0');
-					} else {
+					} else if (bombasCercanas == 0) {
 						secreto[i][j] = SinBombas;
 					}
 				}
@@ -115,7 +115,7 @@ public class PROGRAMA {
 		}
 	}
 
-	public static void mostrarSecreto(int x, int y) {
+	public static void mostrarSecreto(int x, int y, char[][] tablero) {
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				System.out.print(secreto[i][j] + " ");
@@ -124,50 +124,36 @@ public class PROGRAMA {
 		}
 	}
 
-	public static boolean verificarSiQuedanCasillasPorDestapar(int x, int y, char[][] tablero) {
-		boolean hayCasillasSinAbrir = false;
-		for (int i = 0; i < tablero.length; i++) {
-			for (int j = 0; j < tablero[0].length; j++) {
+	public static boolean destaparCasilla(char[][] tablero, char[][] secreto2, int filaSeleccionada,
+			int columnaSeleccionada, boolean bombaDetected, boolean win, int mines) {
+		if (secreto2[filaSeleccionada][columnaSeleccionada] >= '1'
+				&& secreto2[filaSeleccionada][columnaSeleccionada] <= '8') {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
+		}
+		if (secreto2[filaSeleccionada][columnaSeleccionada] == 'B') {
+
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
+			bombaDetected = true;
+		}
+		if (secreto2[filaSeleccionada][columnaSeleccionada] == '◾') {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
+			/*RECURSIVIDAD*/
+		}
+		int contador = 0;
+		int numFiles = tablero.length;
+		int numColumnes = tablero[0].length;
+		for (int i = 0; i < numFiles; i++) {
+			for (int j = 0; j < numColumnes; j++) {
 				if (tablero[i][j] == '⬜') {
-					hayCasillasSinAbrir = true;
+					contador++;
 				}
 			}
 		}
-		return hayCasillasSinAbrir;
-	}
-
-	public static void destaparCasilla(int x, int y, char[][] tablero, char[][] secreto2, boolean bombaDetected2,
-			int mines) {
-		int filas = secreto.length;
-		int columnas = secreto[0].length;
-		boolean bombaDetected = false;
-
-		if (x < 0 || x >= filas || y < 0 || y >= columnas) {
-
+		if (contador == mines) {
+			win = true;
 		}
+		return (bombaDetected || win);
 
-		if (tablero[x][y] != 0) {
-
-		}
-
-		if (secreto[x][y] >= '1' && secreto[x][y] <= '8') {
-			tablero[x][y] = secreto[x][y];
-		} else if (secreto[x][y] == '◾') {
-			tablero[x][y] = secreto[x][y];
-
-			destaparCasilla((x + 1), y, tablero, secreto, bombaDetected, mines);
-			destaparCasilla((x - 1), y, tablero, secreto, bombaDetected, mines);
-			destaparCasilla(x, (y + 1), tablero, secreto, bombaDetected, mines);
-			destaparCasilla(x, (y - 1), tablero, secreto, bombaDetected, mines);
-		} else if (secreto[x][y] == 'B') {
-			tablero[x][y] = secreto[x][y];
-			System.out.println("HAS TREPITJAT UNA MINA, joc finalitzat");
-			PROGRAMA.mostrarTablero(x, y, tablero);
-			System.out.println();
-			PROGRAMA.inicializarTablero(x, y, tablero);
-			PROGRAMA.inicializarSecreto(x, y, mines, tablero);
-			bombaDetected = true;
-		}
 	}
 
 }

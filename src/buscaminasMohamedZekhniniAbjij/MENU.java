@@ -84,6 +84,7 @@ public class MENU {
 				break;
 			case 3:
 				if (haElegidoNivel) {
+					System.out.println("Carapolla tu X es: ");
 					JUGAR.jugar(x, y, tablero, secreto, mines);
 				} else {
 					System.out.println("Abans has de seleccionar un nivell");
