@@ -137,7 +137,7 @@ public class PROGRAMA {
 		}
 		if (secreto2[filaSeleccionada][columnaSeleccionada] == '◾') {
 			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
-			/*RECURSIVIDAD*/
+			/* RECURSIVIDAD */
 		}
 		int contador = 0;
 		int numFiles = tablero.length;
