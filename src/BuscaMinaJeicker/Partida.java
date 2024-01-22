@@ -80,12 +80,18 @@ public class Partida {
     public static void jugar(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
         do {
             for (int i = 0; i < x; i++) {
-                System.out.println();
+                System.out.print(i + "  ");
                 for (int j = 0; j < y; j++) {
-                    System.out.print(tablero[i][j] + "   ");
+                    System.out.print(tablero[i][j] + "  ");
                 }
                 System.out.println();
             }
+
+            System.out.print("   ");
+            for (int j = 0; j < y; j++) {
+                System.out.print(j + "  ");
+            }
+            System.out.println();
             System.out.println("Dime la fila y la columna: ");
 
             fila = sc.nextInt();
@@ -113,11 +119,16 @@ public class Partida {
         }
 
         for (int i = 0; i < x; i++) {
-            System.out.println();
+            System.out.print(i + "  ");
             for (int j = 0; j < y; j++) {
-                System.out.print(tablero[i][j] + "   ");
+                System.out.print(tablero[i][j] + "  ");
             }
             System.out.println();
+        }
+
+        System.out.print("   ");
+        for (int j = 0; j < y; j++) {
+            System.out.print(j + "  ");
         }
     }
 
