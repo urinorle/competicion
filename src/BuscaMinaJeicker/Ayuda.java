@@ -41,15 +41,15 @@ public class Ayuda {
 	Thread.sleep(1000);
 	System.out.println();
 	System.out.println("Dispones de un menu de opciones:\n"
-			+ "\n1º Deberas escoger el nivel de\ndificultad que quieras)");
+			+ "\n1º Deberas escoger el nivel de\ndificultad que quieras");
 	Thread.sleep(3500);
 	System.out.println("\n2º Después ya podrás iniciar una partida nueva:");
 	System.out.println();
 	System.out.println("Para ganar deberas liberar \ntodas las casillas del juego sin detonar ninguna mina");
 	Thread.sleep(3500);
 	System.out.println();
-	System.out.println("A medida que vayas seleccionando casillas, \nte ira saliendo el numero de minas que tiene a sus costados. Animos!!");
+	System.out.println("A medida que vayas seleccionando casillas, \nte ira saliendo el numero de minas que tiene \na sus costados.\n Animos!!");
 	
 
-}
+ }
 }

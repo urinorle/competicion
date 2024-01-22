@@ -9,6 +9,8 @@ public class Menubu {
 		int x = 0;
 		int y = 0;
 		int mines = 0;
+		char[][] tauler = null;
+		char[][] secret = null;
 
 		Players j1 = null;
 
@@ -42,18 +44,37 @@ public class Menubu {
 						x = 8;
 						y = 8;
 						mines = 10;
-						Game.inicializar(x, y, mines);
-						Game.mostrar(null, null, b, b);
+						tauler = new char[x][y];
+						secret = new char[x][y];
+						Game.inicializar(x, y, mines, secret, tauler);
 						j1 = Players.definirjugador();
+						Jugar.jugar(tauler, secret, x, y, mines);
 						break;
 					case 2:
-						x = 20;
+						x = 16;
+						y = 16;
+						mines = 40;
+						tauler = new char[x][y];
+						secret = new char[x][y];
 						j1 = Players.definirjugador();
 						break;
 					case 3:
+						x = 16;
+						y = 30;
+						mines = 99;
+						tauler = new char[x][y];
+						secret = new char[x][y];
 						j1 = Players.definirjugador();
 						break;
 					case 4:
+						System.out.println("Escull el nombre de files: ");
+						x = sc.nextInt();
+						System.out.println("Escull el nombre de columnes: ");
+						y = sc.nextInt();
+						System.out.println("Escull el nombre de mines: ");
+						mines = sc.nextInt();
+						tauler = new char[x][y];
+						secret = new char[x][y];
 						j1 = Players.definirjugador();
 						break;
 					case 0:

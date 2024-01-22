@@ -7,9 +7,9 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) throws InterruptedException {
+		
 		int a = 1;
 		Jugadores j1 = null;
-		Jugadores j2 = null;
 		
 		do {
 			int opcio = menu(a);
@@ -20,8 +20,8 @@ public class Menu {
 				break;
 			case 2:
 				boolean b = false;
-				Opciones.menu();
 				do {
+					Opciones.menu();
 					int l = sc.nextInt();
 					
 					if (l < 0 || l > 4) {
@@ -30,26 +30,51 @@ public class Menu {
 					else {
 						switch(l) {
 						case 1:
-							Jugadores.crearJugador();
+							int x = 8;
+							int y = 8;
+							int minas = 10;
+							char[][] tablero = Partida.inicioTablero(x, y, minas);
+							char[][] secret = Partida.inicioSecret(x, y, minas);
+							j1 = Jugadores.crearJugador();
+							Partida.jugar(tablero, secret, x, y, minas, x);
 							break;
 						case 2:
-							Jugadores.crearJugador();
+							x = 16;
+							y = 16;
+							minas = 40;
+							tablero = Partida.inicioTablero(x, y, minas);
+							secret = Partida.inicioSecret(x, y, minas);
+							j1 = Jugadores.crearJugador();
+							Partida.jugar(tablero, secret, x, y, minas, x);
 							break;
 						case 3:
-							Jugadores.crearJugador();
+							x = 16;
+							y = 30;
+							minas = 99;
+							tablero = Partida.inicioTablero(x, y, minas);
+							secret = Partida.inicioSecret(x, y, minas);
+							j1 = Jugadores.crearJugador();
+							Partida.jugar(tablero, secret, x, y, minas, x);
 							break;
 						case 4:
-							Jugadores.crearJugador();
+							System.out.println("Dime el tamaño del tablero");
+							x = sc.nextInt();
+							y = sc.nextInt();
+							System.out.println("Dime el numero de minas");
+							minas = sc.nextInt();
+							tablero = Partida.inicioTablero(x, y, minas);
+							secret = Partida.inicioSecret(x, y, minas);
+							j1 = Jugadores.crearJugador();
+							Partida.jugar(tablero, secret, x, y, minas, x);
 							break;
 						case 0:
+							b = true;	
 							break;
 						}
 					}
 				}while(!b);
 				break;
 			case 3:
-				break;
-			case 4:
 				break;
 			case 0:
 				break;
@@ -66,9 +91,8 @@ public class Menu {
 		System.out.println();
 		System.out.println("Escoge una opción para jugar");
 		System.out.println("1. Ayuda");
-		System.out.println("2. Opciones");
-		System.out.println("3. Jugar Partida");
-		System.out.println("4. Ver Ranking");
+		System.out.println("2. Jugar");
+		System.out.println("3. Ver Ranking");
 		System.out.println("0. Salir");
 		do {
 			opcio = sc.nextInt();
