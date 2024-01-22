@@ -5,7 +5,12 @@ import java.util.Scanner;
 public class aSaltoDeCaballo {
 
 	public static void main(String[] args) {
-		char[][] tablero = new char[8][8];
+		int[][] tablero = new int[8][8];
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				tablero[i][j] = 20;
+			}
+		}
 		Scanner sc = new Scanner(System.in);
 
 		int AxFake = sc.nextInt();
@@ -16,43 +21,52 @@ public class aSaltoDeCaballo {
 		int Ay = AyFake - 1;
 		int Bx = BxFake - 1;
 		int By = ByFake - 1;
-		tablero[Ax][Ay] = '1';
-		tablero[Bx][By] = 'A';
+		tablero[Ax][Ay] = 0;
+		tablero[Bx][By] = 8;
 
-		int cont = 0;
+		int cont1 = 0;
+		int cont2 = 1;
 
-		while (verificarExistenciaDeB(tablero)) {
-			cont++;
-			hacerTransformación1(tablero, cont, Ax, Ay);
-		}
-		System.out.println(cont);
+		modificarTablero(cont1, cont2, tablero);
 	}
 
-	public static boolean verificarExistenciaDeB(char[][] tablero) {
-		boolean flag = false;
+	public static void modificarTablero(int cont1, int cont2, int[][] tablero) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (tablero[i][j] == 'B') {
-					flag = true;
+
+				if (tablero[i][j] == cont1) {
+
+					for (int k = 0; k < 8; k++) {
+						for (int l = 0; l < 8; l++) {
+
+							if ((Math.abs(k - i) == 2 && Math.abs(l - j) == 1)
+									|| (Math.abs(k - i) == 1 && Math.abs(l - j) == 2)) {
+								tablero[k][l] = cont2;
+							}
+
+						}
+					}
+
 				}
 			}
 		}
-		return flag;
+		if (existeB(tablero)) {
+			modificarTablero(cont1 + 1, cont2 + 1, tablero);
+		}
+		System.out.println(cont2);
+		System.exit(0);
 	}
 
-	public static void hacerTransformación1(char[][] tablero, int cont, int ax, int ay) {
-
+	public static boolean existeB(int[][] tablero) {
+		int elemento = 8;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if ((Math.abs(ax - i) == 1 && Math.abs(ay - j) == 2)
-						|| (Math.abs(ax - i) == 2 && Math.abs(ay - j) == 1)) {
-					tablero[i][j] = (char) cont;
+				if (tablero[i][j] == elemento) {
+					return true;
 				}
 			}
 		}
-
-		
-
+		return false;
 	}
 
 }
