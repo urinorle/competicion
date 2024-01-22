@@ -4,15 +4,12 @@ import java.util.Random;
 
 public class PROGRAMA {
 	public static Random rd = new Random();
-	public static char[][] secreto = new char[0][0];
 
-	public static void inicializarSecreto(int x, int y, int mines, char[][] tablero) {
+	public static void inicializarSecreto(int x, int y, int mines, char[][] secreto) {
 
-		secreto = new char[x][y];
 		char Bomba = 'B';
 		char SinBombas = '◾';
 		int contador = 0;
-
 		while (contador != mines) {
 
 			int Bx = rd.nextInt(x);
@@ -22,7 +19,6 @@ public class PROGRAMA {
 				contador++;
 			}
 		}
-
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				if (secreto[i][j] != Bomba) {
@@ -35,7 +31,6 @@ public class PROGRAMA {
 				}
 			}
 		}
-
 	}
 
 	private static int contarBombasCercanas(char[][] secret, int fila, int columna, int x, int y) {
@@ -115,7 +110,7 @@ public class PROGRAMA {
 		}
 	}
 
-	public static void mostrarSecreto(int x, int y, char[][] tablero) {
+	public static void mostrarSecreto(int x, int y, char[][] secreto) {
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				System.out.print(secreto[i][j] + " ");
@@ -124,36 +119,60 @@ public class PROGRAMA {
 		}
 	}
 
-	public static boolean destaparCasilla(char[][] tablero, char[][] secreto2, int filaSeleccionada,
+	public static boolean destaparCasilla(char[][] tablero, char[][] secreto, int filaSeleccionada,
 			int columnaSeleccionada, boolean bombaDetected, boolean win, int mines) {
-		if (secreto2[filaSeleccionada][columnaSeleccionada] >= '1'
-				&& secreto2[filaSeleccionada][columnaSeleccionada] <= '8') {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
-		}
-		if (secreto2[filaSeleccionada][columnaSeleccionada] == 'B') {
 
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
-			bombaDetected = true;
-		}
-		if (secreto2[filaSeleccionada][columnaSeleccionada] == '◾') {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto2[filaSeleccionada][columnaSeleccionada];
-			/* RECURSIVIDAD */
-		}
-		int contador = 0;
-		int numFiles = tablero.length;
-		int numColumnes = tablero[0].length;
-		for (int i = 0; i < numFiles; i++) {
-			for (int j = 0; j < numColumnes; j++) {
-				if (tablero[i][j] == '⬜') {
-					contador++;
+		if (secreto[filaSeleccionada][columnaSeleccionada] >= '1'
+				&& secreto[filaSeleccionada][columnaSeleccionada] <= '8') {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
+			int contador = 0;
+			int numFiles = tablero.length;
+			int numColumnes = tablero[0].length;
+			System.out.println("caraNepe1");
+			for (int i = 0; i < numFiles; i++) {
+				for (int j = 0; j < numColumnes; j++) {
+					if (tablero[i][j] == '⬜') {
+						contador++;
+						System.out.println("caraNepe2Contadorrrr");
+					}
 				}
 			}
+			if (contador == mines) {
+				win = true;
+				System.out.println("En teoria hemos ganao");
+				return true;
+			}
+			return false;
 		}
-		if (contador == mines) {
-			win = true;
-		}
-		return (bombaDetected || win);
+		if (secreto[filaSeleccionada][columnaSeleccionada] == 'B') {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
+			bombaDetected = true;
 
+			return true;
+		}
+		if (secreto[filaSeleccionada][columnaSeleccionada] == '◾') {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
+			int contador = 0;
+			int numFiles = tablero.length;
+			int numColumnes = tablero[0].length;
+			System.out.println("caraNepe1");
+			for (int i = 0; i < numFiles; i++) {
+				for (int j = 0; j < numColumnes; j++) {
+					if (tablero[i][j] == '⬜') {
+						contador++;
+						System.out.println("caraNepe2Contadorrrr");
+					}
+				}
+			}
+			if (contador == mines) {
+				win = true;
+				System.out.println("En teoria hemos ganao");
+				return true;
+			}
+			return false;
+		}
+
+		return false;
 	}
 
 }

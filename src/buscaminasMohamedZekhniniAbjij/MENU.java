@@ -36,7 +36,7 @@ public class MENU {
 						tablero = new char[x][y];
 						secreto = new char[x][y];
 						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
-						PROGRAMA.inicializarTablero(x, y, secreto);
+						PROGRAMA.inicializarTablero(x, y, tablero);
 						haElegidoNivel = true;
 						break;
 					case 2:
@@ -46,7 +46,7 @@ public class MENU {
 						tablero = new char[x][y];
 						secreto = new char[x][y];
 						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
-						PROGRAMA.inicializarTablero(x, y, secreto);
+						PROGRAMA.inicializarTablero(x, y, tablero);
 						haElegidoNivel = true;
 						break;
 					case 3:
@@ -56,7 +56,7 @@ public class MENU {
 						tablero = new char[x][y];
 						secreto = new char[x][y];
 						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
-						PROGRAMA.inicializarTablero(x, y, secreto);
+						PROGRAMA.inicializarTablero(x, y, tablero);
 						haElegidoNivel = true;
 						break;
 					case 4:
@@ -69,7 +69,7 @@ public class MENU {
 						tablero = new char[x][y];
 						secreto = new char[x][y];
 						PROGRAMA.inicializarSecreto(x, y, mines, secreto);
-						PROGRAMA.inicializarTablero(x, y, secreto);
+						PROGRAMA.inicializarTablero(x, y, tablero);
 						haElegidoNivel = true;
 						break;
 					case 0:
@@ -84,7 +84,6 @@ public class MENU {
 				break;
 			case 3:
 				if (haElegidoNivel) {
-					System.out.println("Carapolla tu X es: ");
 					JUGAR.jugar(x, y, tablero, secreto, mines);
 				} else {
 					System.out.println("Abans has de seleccionar un nivell");

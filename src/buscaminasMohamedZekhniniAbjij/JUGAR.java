@@ -10,21 +10,24 @@ public class JUGAR {
 		boolean win = false;
 
 		do {
+			PROGRAMA.mostrarSecreto(x, y, secreto);
 			PROGRAMA.mostrarTablero(x, y, tablero);
 			System.out.println("Digues la fila de la casella a destapar");
 			int filaSeleccionada = sc.nextInt();
 			System.out.println("Digues la columna de la casella a destapar");
 			int columnaSeleccionada = sc.nextInt();
-			PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada, bombaDetected, win, mines);
-		} while (!bombaDetected || !win);
-		if (bombaDetected == true) {
-			System.out.println("HAS PERDUT");
+			bombaDetected = PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada,
+					bombaDetected, win, mines);
+		} while (!bombaDetected && !win);
+
+		if (bombaDetected) {
 			PROGRAMA.mostrarTablero(x, y, tablero);
+			System.out.println("HAS PERDUT");			
 		}
-		if (win == true) {
+
+		if (win) {
 			System.out.println("HAS GUANYAT");
 			PROGRAMA.mostrarSecreto(x, y, tablero);
 		}
-
 	}
 }
