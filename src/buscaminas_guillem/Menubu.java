@@ -56,7 +56,6 @@ public class Menubu {
 						secret = new char[x][y];
 						escollirJugador();
 						Game.inicializar(x, y, mines, secret, tauler);
-						Game.inicializar(x, y, mines, secret, tauler);
 						Jugar.jugar(tauler, secret, x, y, mines, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
 						b = 0;
 						break;
@@ -86,6 +85,7 @@ public class Menubu {
 						break;
 					case 4:
 						lvl4 = true;
+						escollirJugador();
 						System.out.println("Escull el nombre de files: ");
 						x = sc.nextInt();
 						System.out.println("Escull el nombre de columnes: ");
@@ -94,10 +94,9 @@ public class Menubu {
 						mines = sc.nextInt();
 						tauler = new char[x][y];
 						secret = new char[x][y];
-						escollirJugador();
 						Game.inicializar(x, y, mines, secret, tauler);
 						Jugar.jugar(tauler, secret, x, y, mines, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
-						Game.lvl(lvl4, lvl4, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
+						j1 = Game.lvl(lvl4, lvl4, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
 						b = 0;
 						break;
 					case 0:

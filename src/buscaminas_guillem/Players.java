@@ -11,7 +11,7 @@ public class Players {
 	static void veureJugador(Players j1, Players j2, Players j3, Players j4) {
 		if (j1 != null) {
 			System.out.println("El jugador " + j1.nom + " ha guanyat " + j1.partidesWin);
-			System.out.println("Es nivell" + j1.lvl);
+			System.out.println("Es nivell " + j1.lvl);
 		}
 		if (j1 != null) {
 			System.out.println("El jugador " + j2.nom + " ha guanyat " + j2.partidesWin);
