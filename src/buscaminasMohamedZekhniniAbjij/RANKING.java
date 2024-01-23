@@ -37,7 +37,7 @@ public class RANKING {
 	}
 
 	public static void registrarNombre(String nombre) {
-		System.out.println("CaraPolla1");
+		
 		boolean existeEste = false;
 		for (int i = 0; i < MAX_JUGADORES; i++) {
 			if (ListaDeJugadores[0][i].equals(nombre)) {
@@ -46,11 +46,11 @@ public class RANKING {
 			}
 		}
 		if (!existeEste) {
-			System.out.println("CaraPolla2");
+			
 			for (int j = 0; j < MAX_JUGADORES; j++) {
 				if (ListaDeJugadores[0][j] == "") {
 					ListaDeJugadores[0][j] = nombre;
-					System.out.println("CaraPolla3");
+					
 					break;
 				}
 			}
