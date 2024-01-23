@@ -88,8 +88,10 @@ public class PROGRAMA {
 						System.out.print(i + "  " + tablero[i][j] + "  ");
 					} else if (j == 0 && i >= 10) {
 						System.out.print(i + " " + tablero[i][j] + "  ");
-					} else if (j < 10) {
+					}else if(j< 10) {
 						System.out.print(tablero[i][j] + "  ");
+					}else if (j < 10) {
+						System.out.print(tablero[i][j] + " ");
 					} else {
 						System.out.print(tablero[i][j] + "  ");
 					}
@@ -154,10 +156,23 @@ public class PROGRAMA {
 			bombaDetected = true;
 			System.out.println("HAS PERDUT!!");
 			System.out.println();
+			PROGRAMA.vaciarSecretoYTablero(secreto, tablero);
+			PROGRAMA.inicializarSecreto((tablero.length), (tablero[0].length), mines, secreto);
 			return bombaDetected;
 		}
 
 		return bombaDetected;
+	}
+
+	private static void vaciarSecretoYTablero(char[][] secreto, char[][] tablero) {
+		int x = secreto.length;
+		int y = secreto[0].length;
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				secreto[i][j] = ' ';
+				tablero[i][j] = '⬜';
+			}
+		}
 	}
 
 	public static void destaparCasilla(char[][] tablero, char[][] secreto, int filaSeleccionada,
@@ -194,8 +209,6 @@ public class PROGRAMA {
 				}
 
 			}
-		} else {
-			System.out.println("Si us plau, selecciona una casella válida");
 		}
 	}
 

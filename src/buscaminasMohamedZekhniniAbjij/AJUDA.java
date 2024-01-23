@@ -3,7 +3,8 @@ package buscaminasMohamedZekhniniAbjij;
 public class AJUDA {
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("                 .               \r\n"
+        System.out.println(
+        		  "                 .               \r\n"
                 + "                 .               \r\n"
                 + "                 .       :       \r\n"
                 + "                 :      .        \r\n"
@@ -49,7 +50,7 @@ public class AJUDA {
         // Instrucciones del juego
         System.out.println("L'objectiu del Buscamines és destapar totes les caselles sense trobar cap mina.");
         Thread.sleep(6000);
-        System.out.println("A mesura que seleccionis caselles, apareixerà el número de mines que hi ha als voltants. Ànims!");
+        System.out.println("A mesura que seleccionis caselles, apareixerà el número de mines que hi ha als voltants.");
         System.out.println();
         
         // Información sobre el ranking y la puntuación

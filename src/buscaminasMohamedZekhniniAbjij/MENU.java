@@ -24,11 +24,12 @@ public class MENU {
 				}
 				break;
 			case 2:
-				menuDificultats();
-				int b = sc.nextInt();
-				do {
-
-					switch (b) {
+				 boolean salirDificultades = false;  
+                 int b;
+                 do {
+                	 menuDificultats();
+                     b = sc.nextInt();
+                     switch (b) {
 					case 1:
 						x = 8;
 						y = 8;
@@ -80,7 +81,7 @@ public class MENU {
 						System.out.println();
 						break;
 					}
-				} while (b > 4 && b < 0);
+				} while (!salirDificultades && (b < 0 || b > 4));
 				break;
 			case 3:
 				if (haElegidoNivel) {

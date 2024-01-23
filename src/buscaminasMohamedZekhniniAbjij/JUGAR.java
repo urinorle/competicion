@@ -14,15 +14,19 @@ public class JUGAR {
 			int filaSeleccionada = sc.nextInt();
 			System.out.println("Digues la columna de la casella a destapar");
 			int columnaSeleccionada = sc.nextInt();
+			if (filaSeleccionada < 0 || filaSeleccionada >= x || columnaSeleccionada < 0 || columnaSeleccionada >= y) {
+				System.out.println("Fixa't bé, has introduït una dada invàlida");
+			} else {
+				PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada);
 
-			PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada);
+				PROGRAMA.mostrarTablero(x, y, tablero);
 
-			PROGRAMA.mostrarTablero(x, y, tablero);
+				bombaDetected = PROGRAMA.comprobarBombaExplotada(tablero, secreto, filaSeleccionada,
+						columnaSeleccionada, bombaDetected, mines);
 
-			bombaDetected = PROGRAMA.comprobarBombaExplotada(tablero, secreto, filaSeleccionada, columnaSeleccionada,
-					bombaDetected, mines);
-
-			win = PROGRAMA.comprobarSiHemosGanado(tablero, secreto, filaSeleccionada, columnaSeleccionada, win, mines);
+				win = PROGRAMA.comprobarSiHemosGanado(tablero, secreto, filaSeleccionada, columnaSeleccionada, win,
+						mines);
+			}
 
 		} while (bombaDetected == false && win == false);
 
