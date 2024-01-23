@@ -26,4 +26,9 @@ public class Players {
 		j.partidesLose = 0;
 		return j;
 	}
+	
+	public static void ranking() {
+		// TODO Auto-generated method stub
+
+	}
 }

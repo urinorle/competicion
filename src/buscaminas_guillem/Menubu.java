@@ -80,6 +80,7 @@ public class Menubu {
 						j1 = Players.definirjugador();
 						Game.inicializar(x, y, mines, secret, tauler);
 						Jugar.jugar(tauler, secret, x, y, mines);
+						b = 0;
 						break;
 					case 0:
 						break;

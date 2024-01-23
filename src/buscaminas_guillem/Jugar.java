@@ -15,19 +15,14 @@ public class Jugar {
 			int filasel = sc.nextInt();
 			System.out.println("Digues una columna: ");
 			int columnasel = sc.nextInt();
-			win = Game.destaparcaselles(tauler, secret, filasel, columnasel, bombadet, win, mines);
-			bombadet = Game.destaparcaselles(tauler, secret, filasel, columnasel, bombadet, win, mines);
-		} while (bombadet == false || win == false);
+			
+			Game.recursivitat(tauler, secret, filasel, columnasel);
+			
+			bombadet = Game.destaparbomba(tauler, secret, filasel, columnasel, bombadet, mines);
+			win = Game.destaparcaselles(tauler, secret, filasel, columnasel, win, mines);
+		} while (bombadet == false && win == false);
 		
-		if (bombadet == true) {
-			System.out.println("Has perdut!!!");
-			Game.mostrar(tauler, x, y);
-		}
-		if (win == true) {
-			System.out.println("Has guanyat!!!");
-			Game.mostrar(tauler, x, y);
-		}
-		
+	
 
 	}
 }
