@@ -15,8 +15,9 @@ public class Jugar {
 			int filasel = sc.nextInt();
 			System.out.println("Digues una columna: ");
 			int columnasel = sc.nextInt();
-			Game.destaparcaselles(tauler, secret, filasel, columnasel, bombadet, win, mines);
-		} while (!bombadet || !win);
+			win = Game.destaparcaselles(tauler, secret, filasel, columnasel, bombadet, win, mines);
+			bombadet = Game.destaparcaselles(tauler, secret, filasel, columnasel, bombadet, win, mines);
+		} while (bombadet == false || win == false);
 		
 		if (bombadet == true) {
 			System.out.println("Has perdut!!!");

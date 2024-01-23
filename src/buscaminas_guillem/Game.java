@@ -121,13 +121,7 @@ public static boolean destaparcaselles(char[][] tauler, char[][] secret, int fil
 	if (secret[filasel][columnasel] >= '1' && secret[filasel][columnasel] <= '8') {
 		tauler[filasel][columnasel] = secret[filasel][columnasel]; 
 	}
-	if (secret[filasel][columnasel] == 'B') {
-		bombadet = true;
-		tauler[filasel][columnasel] = secret[filasel][columnasel];
-	}
-	if (secret[filasel][columnasel] == '◾') {
-		tauler[filasel][columnasel] = secret[filasel][columnasel];
-	}
+	
 	int contador = 0;
 	int numfil = tauler.length;
 	int numcol = tauler[0].length;
@@ -139,11 +133,21 @@ public static boolean destaparcaselles(char[][] tauler, char[][] secret, int fil
 		}
 		if (contador == mines) {
 			win = true;
+			return win;
 		}
 	}
-	return bombadet || win;
+	
+	if (secret[filasel][columnasel] == 'B') {
+		bombadet = true;
+		tauler[filasel][columnasel] = secret[filasel][columnasel];
+		return bombadet;
+	}
+	if (secret[filasel][columnasel] == '◾') {
+		tauler[filasel][columnasel] = secret[filasel][columnasel];
+	}
 	
 	
+	return bombadet;
 
 }
 
