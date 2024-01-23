@@ -76,8 +76,8 @@ public class MENU {
 						haElegidoNivel = false;
 						break;
 					default:
-						System.out.println("Escull una opció correcte: ");
-						System.out.println("");
+						System.out.println("Si us plau, escull una opció correcte: ");
+						System.out.println();
 						break;
 					}
 				} while (b > 4 && b < 0);
@@ -101,7 +101,8 @@ public class MENU {
 			case 0:
 				break;
 			default:
-				System.out.println("Escull una opcio correcte: ");
+				System.out.println("Si us plau, escull una opció correcte: ");
+				System.out.println();
 				break;
 			}
 		} while (a != 0);

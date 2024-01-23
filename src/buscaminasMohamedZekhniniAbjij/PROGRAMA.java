@@ -162,18 +162,40 @@ public class PROGRAMA {
 
 	public static void destaparCasilla(char[][] tablero, char[][] secreto, int filaSeleccionada,
 			int columnaSeleccionada) {
+		int numFil = tablero.length;
+		int numCol = tablero[0].length;
+		if (tablero[filaSeleccionada][columnaSeleccionada] == '⬜' && filaSeleccionada >= 0 && filaSeleccionada < numFil
+				&& columnaSeleccionada >= 0 && columnaSeleccionada < numCol) {
+			char secretoActual = secreto[filaSeleccionada][columnaSeleccionada];
 
-		if (filaSeleccionada >= 0 && filaSeleccionada < tablero.length && columnaSeleccionada >= 0
-				&& columnaSeleccionada < tablero[0].length && secreto[filaSeleccionada][columnaSeleccionada] == '◾'
+			if (secretoActual >= '1' && secretoActual <= '8') {
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
 
-		) {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
-			destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada);
-			destaparCasilla(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada);
-			destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada + 1);
-			destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada - 1);
+			} else if (secretoActual == 'B') {
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
+
+			} else if (secretoActual == '◾') {
+
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
+				if (filaSeleccionada + 1 < numFil) {
+					destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada);
+				}
+
+				if (columnaSeleccionada + 1 < numCol) {
+					destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada + 1);
+				}
+
+				if (filaSeleccionada - 1 >= 0) {
+					destaparCasilla(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada);
+				}
+
+				if (columnaSeleccionada - 1 >= 0) {
+					destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada - 1);
+				}
+
+			}
 		} else {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
+			System.out.println("Si us plau, selecciona una casella válida");
 		}
 	}
 

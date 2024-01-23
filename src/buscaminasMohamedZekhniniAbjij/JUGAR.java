@@ -8,7 +8,6 @@ public class JUGAR {
 	public static void jugar(int x, int y, char[][] tablero, char[][] secreto, int mines) {
 		boolean bombaDetected = false;
 		boolean win = false;
-		PROGRAMA.mostrarSecreto(x, y, secreto);
 		PROGRAMA.mostrarTablero(x, y, tablero);
 		do {
 			System.out.println("Digues la fila de la casella a destapar");
@@ -17,9 +16,7 @@ public class JUGAR {
 			int columnaSeleccionada = sc.nextInt();
 
 			PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada);
-			/**/
 
-			PROGRAMA.mostrarSecreto(x, y, secreto);
 			PROGRAMA.mostrarTablero(x, y, tablero);
 
 			bombaDetected = PROGRAMA.comprobarBombaExplotada(tablero, secreto, filaSeleccionada, columnaSeleccionada,
