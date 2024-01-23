@@ -121,7 +121,6 @@ public class Game {
 
 	public static boolean destaparcaselles(char[][] tauler, char[][] secret, int filasel, int columnasel, boolean win,
 			int mines) {
-		
 
 		int contador = 0;
 		int numfil = tauler.length;
@@ -132,14 +131,13 @@ public class Game {
 					contador++;
 				}
 			}
-			
+
 		}
 		if (contador == mines) {
 			win = true;
 			System.out.println("Has guanyat!!!");
 			return win;
 		}
-
 
 		return win;
 
@@ -157,18 +155,102 @@ public class Game {
 		return bombadet;
 
 	}
-	
-	public static void recursivitat(char[][] tauler, char[][] secret, int filasel, int columnasel) {
-		if (secret[filasel][columnasel] >= 1 && secret[filasel][columnasel] <= 8 || secret[filasel][columnasel] == 'B') {
-			tauler[filasel][columnasel] = secret[filasel][columnasel];
-		} else if (filasel >= 0 && filasel < tauler.length && columnasel >= 0 && columnasel < tauler[0].length && secret[filasel][columnasel] == '◾'){
-			tauler[filasel][columnasel] = secret[filasel][columnasel];
-			recursivitat(tauler, secret, filasel + 1, columnasel);
-			recursivitat(tauler, secret, filasel - 1, columnasel);
-			recursivitat(tauler, secret, filasel, columnasel + 1);
-			recursivitat(tauler, secret, filasel, columnasel - 1);
+
+	public static void recursivitat(char[][] tauler, char[][] secret, int filasel,
+			int columnasel) {
+		int numFil = tauler.length;
+		int numCol = tauler[0].length;
+		if (tauler[filasel][columnasel] == '⬜') {
+			char secretoActual = secret[filasel][columnasel];
+
+			if (secretoActual >= '1' && secretoActual <= '8') {
+				tauler[filasel][columnasel] = secretoActual;
+
+			} else if (secretoActual == 'B') {
+				tauler[filasel][columnasel] = secretoActual;
+
+			} else if (secretoActual == '◾') {
+
+				tauler[filasel][columnasel] = secretoActual;
+				if (filasel + 1 < numFil) {
+					recursivitat(tauler, secret, filasel + 1, columnasel);
+				}
+
+				if (filasel + 1 < numCol) {
+					recursivitat(tauler, secret, filasel, columnasel + 1);
+				}
+
+				if (filasel - 1 >= 0) {
+					recursivitat(tauler, secret, filasel - 1, columnasel);
+				}
+
+				if (columnasel - 1 >= 0) {
+					recursivitat(tauler, secret, filasel, columnasel - 1);
+				}
+
+			}
 		}
-		
+	}
+
+	public static Players lvl(boolean bombadet, boolean win, boolean lvl1, boolean lvl2, boolean lvl3, boolean lvl4, Players j1, Players j2, Players j3,
+			Players j4) {
+		if (lvl1 == true) {
+			if (win == true) {
+				j1.exp += 1;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+			if (bombadet == true) {
+				j1.exp += 0;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+		}
+		if (lvl2 == true) {
+			if (win == true) {
+				j1.exp += 2;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+			if (bombadet == true) {
+				j1.exp += 1;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+		}
+		if (lvl3 == true) {
+			if (win == true) {
+				j1.exp += 4;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+			if (bombadet == true) {
+				j1.exp += 3;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+		}
+		if (lvl4 == true) {
+			if (win == true) {
+				j1.exp += 50;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+			if (bombadet == true) {
+				j1.exp += 4;
+				if (j1.exp >= 10) {
+					j1.exp++;
+				}
+			}
+		}
+		return j1;
 
 	}
 
