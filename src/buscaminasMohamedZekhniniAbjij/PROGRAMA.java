@@ -119,60 +119,62 @@ public class PROGRAMA {
 		}
 	}
 
-	public static boolean destaparCasilla(char[][] tablero, char[][] secreto, int filaSeleccionada,
-			int columnaSeleccionada, boolean bombaDetected, boolean win, int mines) {
+	public static boolean comprobarSiHemosGanado(char[][] tablero, char[][] secreto, int filasel, int columnasel,
+			boolean win, int mines) {
+		if (secreto[filasel][columnasel] >= '1' && secreto[filasel][columnasel] <= '8'
+				|| secreto[filasel][columnasel] == '◾') {
 
-		if (secreto[filaSeleccionada][columnaSeleccionada] >= '1'
-				&& secreto[filaSeleccionada][columnaSeleccionada] <= '8') {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
 			int contador = 0;
-			int numFiles = tablero.length;
-			int numColumnes = tablero[0].length;
-			System.out.println("caraNepe1");
-			for (int i = 0; i < numFiles; i++) {
-				for (int j = 0; j < numColumnes; j++) {
+			int numfil = tablero.length;
+			int numcol = tablero[0].length;
+			/*-------------------------------------------------*/
+			for (int i = 0; i < numfil; i++) {
+				for (int j = 0; j < numcol; j++) {
 					if (tablero[i][j] == '⬜') {
 						contador++;
-						System.out.println("caraNepe2Contadorrrr");
 					}
 				}
 			}
+			/*-------------------------------------------------*/
 			if (contador == mines) {
 				win = true;
-				System.out.println("En teoria hemos ganao");
-				return true;
+				System.out.println("HAS GUANYAT!!");
+				System.out.println();
 			}
-			return false;
+			/*-------------------------------------------------*/
 		}
-		if (secreto[filaSeleccionada][columnaSeleccionada] == 'B') {
-			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
+
+		return win;
+	}
+
+	public static boolean comprobarBombaExplotada(char[][] tablero, char[][] secreto, int filasel, int columnasel,
+			boolean bombaDetected, int mines) {
+
+		if (secreto[filasel][columnasel] == 'B') {
 			bombaDetected = true;
-
-			return true;
+			System.out.println("HAS PERDUT!!");
+			System.out.println();
+			return bombaDetected;
 		}
-		if (secreto[filaSeleccionada][columnaSeleccionada] == '◾') {
+
+		return bombaDetected;
+	}
+
+	public static void destaparCasilla(char[][] tablero, char[][] secreto, int filaSeleccionada,
+			int columnaSeleccionada) {
+
+		if (filaSeleccionada >= 0 && filaSeleccionada < tablero.length && columnaSeleccionada >= 0
+				&& columnaSeleccionada < tablero[0].length && secreto[filaSeleccionada][columnaSeleccionada] == '◾'
+
+		) {
 			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
-			int contador = 0;
-			int numFiles = tablero.length;
-			int numColumnes = tablero[0].length;
-			System.out.println("caraNepe1");
-			for (int i = 0; i < numFiles; i++) {
-				for (int j = 0; j < numColumnes; j++) {
-					if (tablero[i][j] == '⬜') {
-						contador++;
-						System.out.println("caraNepe2Contadorrrr");
-					}
-				}
-			}
-			if (contador == mines) {
-				win = true;
-				System.out.println("En teoria hemos ganao");
-				return true;
-			}
-			return false;
+			destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada);
+			destaparCasilla(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada);
+			destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada + 1);
+			destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada - 1);
+		} else {
+			tablero[filaSeleccionada][columnaSeleccionada] = secreto[filaSeleccionada][columnaSeleccionada];
 		}
-
-		return false;
 	}
 
 }

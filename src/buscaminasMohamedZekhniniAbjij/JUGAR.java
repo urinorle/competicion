@@ -8,26 +8,26 @@ public class JUGAR {
 	public static void jugar(int x, int y, char[][] tablero, char[][] secreto, int mines) {
 		boolean bombaDetected = false;
 		boolean win = false;
-
+		PROGRAMA.mostrarSecreto(x, y, secreto);
+		PROGRAMA.mostrarTablero(x, y, tablero);
 		do {
-			PROGRAMA.mostrarSecreto(x, y, secreto);
-			PROGRAMA.mostrarTablero(x, y, tablero);
 			System.out.println("Digues la fila de la casella a destapar");
 			int filaSeleccionada = sc.nextInt();
 			System.out.println("Digues la columna de la casella a destapar");
 			int columnaSeleccionada = sc.nextInt();
-			bombaDetected = PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada,
-					bombaDetected, win, mines);
-		} while (!bombaDetected && !win);
 
-		if (bombaDetected) {
+			PROGRAMA.destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada);
+			/**/
+
+			PROGRAMA.mostrarSecreto(x, y, secreto);
 			PROGRAMA.mostrarTablero(x, y, tablero);
-			System.out.println("HAS PERDUT");			
-		}
 
-		if (win) {
-			System.out.println("HAS GUANYAT");
-			PROGRAMA.mostrarSecreto(x, y, tablero);
-		}
+			bombaDetected = PROGRAMA.comprobarBombaExplotada(tablero, secreto, filaSeleccionada, columnaSeleccionada,
+					bombaDetected, mines);
+
+			win = PROGRAMA.comprobarSiHemosGanado(tablero, secreto, filaSeleccionada, columnaSeleccionada, win, mines);
+
+		} while (bombaDetected == false && win == false);
+
 	}
 }
