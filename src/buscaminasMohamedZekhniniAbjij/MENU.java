@@ -11,7 +11,7 @@ public class MENU {
 		boolean haElegidoNivel = false;
 		char[][] tablero = null;
 		char[][] secreto = null;
-
+		RANKING.inicializarRanking();
 		do {
 			menu();
 			a = sc.nextInt();
@@ -24,12 +24,12 @@ public class MENU {
 				}
 				break;
 			case 2:
-				 boolean salirDificultades = false;  
-                 int b;
-                 do {
-                	 menuDificultats();
-                     b = sc.nextInt();
-                     switch (b) {
+				boolean salirDificultades = false;
+				int b;
+				do {
+					menuDificultats();
+					b = sc.nextInt();
+					switch (b) {
 					case 1:
 						x = 8;
 						y = 8;
@@ -93,7 +93,7 @@ public class MENU {
 				break;
 			case 4:
 				if (haElegidoNivel) {
-					/* Mostrar ranking */
+					RANKING.mostrarRanking();
 				} else {
 					System.out.println("Abans has de jugar");
 					System.out.println();
