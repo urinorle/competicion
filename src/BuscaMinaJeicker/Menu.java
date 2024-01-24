@@ -75,6 +75,7 @@ public class Menu {
 				}while(!b);
 				break;
 			case 3:
+			Jugadores.veureJugador(j1, j1);
 				break;
 			case 0:
 				break;

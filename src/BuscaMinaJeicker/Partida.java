@@ -50,15 +50,13 @@ public class Partida {
 
     private static void colocarMinas(char[][] secret, int minas, char mina, int x, int y) {
         Random random = new Random();
-        if (minas > 0) {
+        while (minas > 0) {
             int randomX = random.nextInt(x);
             int randomY = random.nextInt(y);
 
             if (secret[randomX][randomY] != mina) {
                 secret[randomX][randomY] = mina;
-                colocarMinas(secret, minas - 1, mina, x, y);
-            } else {
-                colocarMinas(secret, minas, mina, x, y);
+                minas--;
             }
         }
     }
@@ -80,33 +78,125 @@ public class Partida {
     public static void jugar(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
         do {
             for (int i = 0; i < x; i++) {
-                System.out.print(i + "  ");
+                System.out.printf("%2d ", i);
                 for (int j = 0; j < y; j++) {
-                    System.out.print(tablero[i][j] + "  ");
+                    System.out.printf("%2c ", tablero[i][j]);
                 }
                 System.out.println();
             }
-
+            
             System.out.print("   ");
             for (int j = 0; j < y; j++) {
-                System.out.print(j + "  ");
+                System.out.printf("%2d ", j);
             }
             System.out.println();
-            System.out.println("Dime la fila y la columna: ");
-
-            fila = sc.nextInt();
-            columna = sc.nextInt();
-
+    
+            fila = 0;
+            columna = 0;
+            do {
+                System.out.println("Introduce la fila y la columna: ");
+                fila = sc.nextInt();
+                columna = sc.nextInt();
+                if (fila < 0 || fila >= x || columna < 0 || columna >= y) {
+                    System.out.println("Error, vuelve a introducir la fila y la columna: ");
+                }
+            } while (fila < 0 || fila >= x || columna < 0 || columna >= y);
+            
+            boolean esMina = comprobarMinas(tablero, secret, x, y, fila, columna);
             if (fila >= 0 && fila < x && columna >= 0 && columna < y) {
-                if (secret[fila][columna] == '*') {
-                    System.out.println("Mala suerte, has perdido");
-                    mostrarMinas(tablero, secret, x, y);
+                tablero[fila][columna] = secret[fila][columna]; // Mover esta línea aquí
+                if (esMina) {
                     break;
-                } else {
-                    tablero[fila][columna] = secret[fila][columna];
+                } else if (secret[fila][columna] == '·') {
+                    vacio(tablero, secret, x, y, fila, columna);
+                    boolean esWin = win(tablero, secret, x, y, fila, columna);
+                    if (esWin) {
+                        break;
+                    }
                 }
             }
         } while (secret[fila][columna] != '*');
+    }
+    
+    private static boolean comprobarMinas(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
+        boolean mina = false;
+        if (secret[fila][columna] == '*') {
+            System.out.println("Mala suerte, has perdido");
+            mostrarMinas(tablero, secret, x, y);
+            mina = true;
+        }
+        return mina;
+    }
+    
+    private static boolean win(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
+        int contadorCasillas = 0;
+        int contadorMinas = 0;
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (tablero[i][j] != '*') {
+                    contadorCasillas++;
+                } else {
+                    contadorMinas++;
+                }
+            }
+        }
+        if (contadorCasillas == (x * y) - contadorMinas) {
+            System.out.println("¡Felicidades, has ganado!");
+            mostrarMinas(tablero, secret, x, y);
+            return true;
+        } else {
+            return false;
+        }
+    }   
+
+    private static void vacio(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
+        if (secret[fila][columna] == '·') {
+            tablero[fila][columna] = secret[fila][columna];
+            if (fila > 0 && fila < x - 1 && columna > 0 && columna < y - 1) {
+                if (secret[fila - 1][columna - 1] != '*') {
+                    tablero[fila - 1][columna - 1] = secret[fila - 1][columna - 1];
+                    if (secret[fila - 1][columna - 1] == '·') {
+                        vacio(tablero, secret, x, y, fila - 1, columna - 1);
+                    }
+                }
+                if (secret[fila - 1][columna] != '*') {
+                    tablero[fila - 1][columna] = secret[fila - 1][columna];
+                    if (secret[fila - 1][columna] == '·') {
+                        vacio(tablero, secret, x, y, fila - 1, columna);
+                    }
+                }
+                if (secret[fila - 1][columna + 1] != '*') {
+                    tablero[fila - 1][columna + 1] = secret[fila - 1][columna + 1];
+                    if (secret[fila - 1][columna + 1] == '·') {
+                        vacio(tablero, secret, x, y, fila - 1, columna + 1);
+                    }
+                }
+                if (secret[fila][columna - 1] != '*') {
+                    tablero[fila][columna - 1] = secret[fila][columna - 1];
+                    if (secret[fila][columna - 1] == '·') {
+                        vacio(tablero, secret, x, y, fila, columna - 1);
+                    }
+                }
+                if (secret[fila][columna + 1] != '*') {
+                    tablero[fila][columna + 1] = secret[fila][columna + 1];
+                    if (secret[fila][columna + 1] == '·') {
+                        vacio(tablero, secret, x, y, fila, columna + 1);
+                    }
+                }
+                if (secret[fila + 1][columna - 1] != '*') {
+                    tablero[fila + 1][columna - 1] = secret[fila + 1][columna - 1];
+                    if (secret[fila + 1][columna - 1] == '·') {
+                        vacio(tablero, secret, x, y, fila + 1, columna - 1);
+                    }
+                }
+                if (secret[fila + 1][columna] != '*') {
+                    tablero[fila + 1][columna] = secret[fila + 1][columna];
+                    if (secret[fila + 1][columna] == '·') {
+                        vacio(tablero, secret, x, y, fila + 1, columna);
+                    }
+                }
+            }
+        }
     }
 
     private static void mostrarMinas(char[][] tablero, char[][] secret, int x, int y) {
@@ -119,18 +209,18 @@ public class Partida {
         }
 
         for (int i = 0; i < x; i++) {
-            System.out.print(i + "  ");
+            System.out.printf("%2d ", i);
             for (int j = 0; j < y; j++) {
-                System.out.print(tablero[i][j] + "  ");
+                System.out.printf("%2c ", tablero[i][j]);
             }
             System.out.println();
         }
-
+        
         System.out.print("   ");
         for (int j = 0; j < y; j++) {
-            System.out.print(j + "  ");
+            System.out.printf("%2d ", j);
         }
+        System.out.println();
     }
-
 }
 
