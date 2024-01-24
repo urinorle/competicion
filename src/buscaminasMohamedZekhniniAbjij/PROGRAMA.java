@@ -179,8 +179,11 @@ public class PROGRAMA {
 			int columnaSeleccionada) {
 		int numFil = tablero.length;
 		int numCol = tablero[0].length;
-		if (tablero[filaSeleccionada][columnaSeleccionada] == '⬜' && filaSeleccionada >= 0 && filaSeleccionada < numFil
-				&& columnaSeleccionada >= 0 && columnaSeleccionada < numCol) {
+		if (tablero[filaSeleccionada][columnaSeleccionada] == '⬜' && 
+				filaSeleccionada >= 0 && 
+				filaSeleccionada < numFil
+				&& columnaSeleccionada >= 0 && 
+				columnaSeleccionada < numCol) {
 			char secretoActual = secreto[filaSeleccionada][columnaSeleccionada];
 
 			if (secretoActual >= '1' && secretoActual <= '8') {

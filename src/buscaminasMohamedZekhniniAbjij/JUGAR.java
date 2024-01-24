@@ -10,7 +10,6 @@ public class JUGAR {
 		boolean win = false;
 		System.out.println("Quin és el teu nom?");
 		String nombre = sc.nextLine();
-		sc.nextLine();
 		System.out.println("El teu nom es: " + nombre);
 		RANKING.registrarNombre(nombre);
 		PROGRAMA.mostrarTablero(x, y, tablero);
