@@ -88,9 +88,9 @@ public class PROGRAMA {
 						System.out.print(i + "  " + tablero[i][j] + "  ");
 					} else if (j == 0 && i >= 10) {
 						System.out.print(i + " " + tablero[i][j] + "  ");
-					}else if(j< 10) {
+					} else if (j < 10) {
 						System.out.print(tablero[i][j] + "  ");
-					}else if (j < 10) {
+					} else if (j < 10) {
 						System.out.print(tablero[i][j] + " ");
 					} else {
 						System.out.print(tablero[i][j] + "  ");
@@ -206,6 +206,22 @@ public class PROGRAMA {
 
 				if (columnaSeleccionada - 1 >= 0) {
 					destaparCasilla(tablero, secreto, filaSeleccionada, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada - 1 >= 0 && columnaSeleccionada - 1 >= 0) {
+					destaparCasilla(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada - 1 >= 0 && columnaSeleccionada + 1 < numCol) {
+					destaparCasilla(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada + 1);
+				}
+
+				if (filaSeleccionada + 1 < numFil && columnaSeleccionada - 1 >= 0) {
+					destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada + 1 < numFil && columnaSeleccionada + 1 < numCol) {
+					destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada + 1);
 				}
 
 			}
