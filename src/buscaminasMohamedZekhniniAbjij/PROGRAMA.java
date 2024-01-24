@@ -59,6 +59,7 @@ public class PROGRAMA {
 	}
 
 	public static void mostrarTablero(int x, int y, char[][] tablero) {
+		
 		if (y < 10) {
 			for (int i = 0; i < x; i++) {
 				for (int j = 0; j < y; j++) {
@@ -140,8 +141,8 @@ public class PROGRAMA {
 			/*-------------------------------------------------*/
 			if (contador == mines) {
 				win = true;
-				System.out.println("HAS GUANYAT!!");
-				System.out.println();
+				System.err.println("HAS GUANYAT!!");
+				System.out.println(" ");
 			}
 			/*-------------------------------------------------*/
 		}
@@ -195,6 +196,7 @@ public class PROGRAMA {
 			} else if (secretoActual == '◾') {
 
 				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
+				
 				if (filaSeleccionada + 1 < numFil) {
 					destaparCasilla(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada);
 				}
