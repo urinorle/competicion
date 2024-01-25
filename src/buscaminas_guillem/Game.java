@@ -156,43 +156,61 @@ public class Game {
 
 	}
 
-	public static void recursivitat(char[][] tauler, char[][] secret, int filasel,
-			int columnasel) {
-		int numFil = tauler.length;
-		int numCol = tauler[0].length;
-		if (tauler[filasel][columnasel] == '⬜') {
-			char secretoActual = secret[filasel][columnasel];
+	public static void recursivitat(char[][] tablero, char[][] secreto, int filaSeleccionada,
+			int columnaSeleccionada) {
+		int numFil = tablero.length;
+		int numCol = tablero[0].length;
+		if (tablero[filaSeleccionada][columnaSeleccionada] == '⬜' && filaSeleccionada >= 0 && filaSeleccionada < numFil
+				&& columnaSeleccionada >= 0 && columnaSeleccionada < numCol) {
+			char secretoActual = secreto[filaSeleccionada][columnaSeleccionada];
 
 			if (secretoActual >= '1' && secretoActual <= '8') {
-				tauler[filasel][columnasel] = secretoActual;
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
 
 			} else if (secretoActual == 'B') {
-				tauler[filasel][columnasel] = secretoActual;
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
 
 			} else if (secretoActual == '◾') {
 
-				tauler[filasel][columnasel] = secretoActual;
-				if (filasel + 1 < numFil) {
-					recursivitat(tauler, secret, filasel + 1, columnasel);
+				tablero[filaSeleccionada][columnaSeleccionada] = secretoActual;
+				
+				if (filaSeleccionada + 1 < numFil) {
+					recursivitat(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada);
 				}
 
-				if (filasel + 1 < numCol) {
-					recursivitat(tauler, secret, filasel, columnasel + 1);
+				if (columnaSeleccionada + 1 < numCol) {
+					recursivitat(tablero, secreto, filaSeleccionada, columnaSeleccionada + 1);
 				}
 
-				if (filasel - 1 >= 0) {
-					recursivitat(tauler, secret, filasel - 1, columnasel);
+				if (filaSeleccionada - 1 >= 0) {
+					recursivitat(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada);
 				}
 
-				if (columnasel - 1 >= 0) {
-					recursivitat(tauler, secret, filasel, columnasel - 1);
+				if (columnaSeleccionada - 1 >= 0) {
+					recursivitat(tablero, secreto, filaSeleccionada, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada - 1 >= 0 && columnaSeleccionada - 1 >= 0) {
+					recursivitat(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada - 1 >= 0 && columnaSeleccionada + 1 < numCol) {
+					recursivitat(tablero, secreto, filaSeleccionada - 1, columnaSeleccionada + 1);
+				}
+
+				if (filaSeleccionada + 1 < numFil && columnaSeleccionada - 1 >= 0) {
+					recursivitat(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada - 1);
+				}
+
+				if (filaSeleccionada + 1 < numFil && columnaSeleccionada + 1 < numCol) {
+					recursivitat(tablero, secreto, filaSeleccionada + 1, columnaSeleccionada + 1);
 				}
 
 			}
 		}
 	}
 
-	public static Players lvl(boolean bombadet, boolean win, boolean lvl1, boolean lvl2, boolean lvl3, boolean lvl4, Players j1, Players j2, Players j3,
+	public static int lvl(boolean bombadet, boolean win, boolean lvl1, boolean lvl2, boolean lvl3, boolean lvl4, Players j1, Players j2, Players j3,
 			Players j4) {
 		if (lvl1 == true) {
 			if (win == true) {
@@ -249,8 +267,9 @@ public class Game {
 					j1.exp++;
 				}
 			}
+			return j1.lvl;
 		}
-		return j1;
+		return j1.lvl;
 
 	}
 

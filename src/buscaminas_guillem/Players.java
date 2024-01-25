@@ -13,17 +13,17 @@ public class Players {
 			System.out.println("El jugador " + j1.nom + " ha guanyat " + j1.partidesWin);
 			System.out.println("Es nivell " + j1.lvl);
 		}
-		if (j1 != null) {
+		if (j2 != null) {
 			System.out.println("El jugador " + j2.nom + " ha guanyat " + j2.partidesWin);
 			System.out.println("Es nivell" + j2.lvl);
 		}
 
-		if (j1 != null) {
+		if (j3 != null) {
 			System.out.println("El jugador " + j3.nom + " ha guanyat " + j3.partidesWin);
 			System.out.println("Es nivell" + j3.lvl);
 		}
 
-		if (j1 != null) {
+		if (j4 != null) {
 			System.out.println("El jugador " + j4.nom + " ha guanyat " + j4.partidesWin);
 			System.out.println("Es nivell" + j4.lvl);
 		}

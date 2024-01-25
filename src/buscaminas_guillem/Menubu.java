@@ -96,7 +96,7 @@ public class Menubu {
 						secret = new char[x][y];
 						Game.inicializar(x, y, mines, secret, tauler);
 						Jugar.jugar(tauler, secret, x, y, mines, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
-						j1 = Game.lvl(lvl4, lvl4, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
+						j1.lvl = Game.lvl(lvl4, lvl4, lvl1, lvl2, lvl3, lvl4, j1, j2, j3, j4);
 						b = 0;
 						break;
 					case 0:
