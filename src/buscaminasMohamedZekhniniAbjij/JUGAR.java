@@ -8,10 +8,6 @@ public class JUGAR {
 	public static void jugar(int x, int y, char[][] tablero, char[][] secreto, int mines) {
 		boolean bombaDetected = false;
 		boolean win = false;
-		System.out.println("Quin és el teu nom?");
-		String nombre = sc.nextLine();
-		System.out.println("El teu nom es: " + nombre);
-		RANKING.registrarNombre(nombre);
 		PROGRAMA.mostrarTablero(x, y, tablero);
 		do {
 			System.out.println("Digues la fila de la casella a destapar");

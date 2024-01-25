@@ -11,7 +11,6 @@ public class MENU {
 		boolean haElegidoNivel = false;
 		char[][] tablero = null;
 		char[][] secreto = null;
-		RANKING.inicializarRanking();
 		do {
 			menu();
 			a = sc.nextInt();
@@ -91,14 +90,6 @@ public class MENU {
 					System.out.println();
 				}
 				break;
-			case 4:
-				if (haElegidoNivel) {
-					RANKING.mostrarRanking();
-				} else {
-					System.out.println("Abans has de jugar");
-					System.out.println();
-				}
-				break;
 			case 0:
 				break;
 			default:
@@ -121,7 +112,6 @@ public class MENU {
 		System.out.println("1.➡️ Mostrar Ajuda");
 		System.out.println("2.➡️ Escollir nivell");
 		System.out.println("3.➡️ Jugar Partida");
-		System.out.println("4.➡️ Veure Ranking");
 		System.out.println("0.➡️ Sortir");
 	}
 
