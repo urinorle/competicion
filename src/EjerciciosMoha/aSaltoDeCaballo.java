@@ -17,17 +17,21 @@ public class aSaltoDeCaballo {
 		int AyFake = sc.nextInt();
 		int BxFake = sc.nextInt();
 		int ByFake = sc.nextInt();
-		int Ax = AxFake - 1;
-		int Ay = AyFake - 1;
-		int Bx = BxFake - 1;
-		int By = ByFake - 1;
-		tablero[Ax][Ay] = 0;
-		tablero[Bx][By] = 8;
+		if (AxFake == BxFake && AyFake == ByFake) {
+			System.out.println(0);
+		} else {
+			int Ax = AxFake - 1;
+			int Ay = AyFake - 1;
+			int Bx = BxFake - 1;
+			int By = ByFake - 1;
+			tablero[Ax][Ay] = 0;
+			tablero[Bx][By] = 8;
 
-		int cont1 = 0;
-		int cont2 = 1;
+			int cont1 = 0;
+			int cont2 = 1;
 
-		modificarTablero(cont1, cont2, tablero);
+			modificarTablero(cont1, cont2, tablero);
+		}
 	}
 
 	public static void modificarTablero(int cont1, int cont2, int[][] tablero) {
