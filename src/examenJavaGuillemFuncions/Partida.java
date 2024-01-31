@@ -125,8 +125,8 @@ public class Partida {
 		return cont;
 	}
 
-	static void copiar(int[][] tauler) {
-		int[][] copia = new int[tauler.length][tauler.length];
+	static void copiar(int[][] tauler, int[][] copia) {
+		
 		for (int i = 0; i < tauler.length; i++) {
 			for (int j = 0; j < tauler.length; j++) {
 				copia[i][j] = tauler[i][j];
@@ -164,8 +164,16 @@ public class Partida {
 		return cont;
 	}
 
-	static int superficie(int[][] tauler) {
-		return 1;
+	static int superficie(int[][] tauler, int[][] copia, int posx, int posy) {
+		if (copia[posx][posy] == 0) {
+			return 0;
+		} else {
+			int cont = 0;
+			
+			return cont;
+		}
+		
+		
 
 	}
 

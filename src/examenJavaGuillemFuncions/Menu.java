@@ -9,6 +9,7 @@ public class Menu {
 		
 		int TAMANY = 8;
 		int[][]tauler = new int[TAMANY][TAMANY];
+		int[][] copia = new int[tauler.length][tauler.length];
 		
 		
 			int opcio = 0;
@@ -38,7 +39,7 @@ public class Menu {
 					break;
 				case 7:
 					System.out.println("Aquesta es la copia");
-					Partida.copiar(tauler);
+					Partida.copiar(tauler, copia);
 					System.out.println("Aquesta es l'original");
 					Partida.mostrar(tauler, TAMANY);
 					break;
@@ -47,7 +48,9 @@ public class Menu {
 					System.out.println(numSuperCreus);
 					break;
 				case 9:
-					int num = Partida.superficie(tauler);
+					int posx = sc.nextInt();
+					int posy = sc.nextInt();
+					int num = Partida.superficie(tauler, copia, posx, posy);
 					break;
 				case 0:
 					break;
