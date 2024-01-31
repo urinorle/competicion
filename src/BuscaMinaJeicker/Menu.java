@@ -5,12 +5,22 @@ import java.util.*;
 public class Menu {
 	
 	static Scanner sc = new Scanner(System.in);
-	
+	static Jugadores j = null;
+	static Jugadores j1 = null;
+	static Jugadores j2 = null;
+	static Jugadores j3 = null;
+	static Jugadores j4 = null;
 	public static void main(String[] args) throws InterruptedException {
-		
 		int a = 1;
-		Jugadores j1 = null;
-		
+		int x = 0;
+		int y = 0;
+		char[][] tablero = null;
+		char[][] secret = null;
+		boolean lvl1 = false;
+		boolean lvl2 = false;
+		boolean lvl3 = false;
+		boolean lvl4 = false;
+
 		do {
 			int opcio = menu(a);
 			
@@ -30,11 +40,11 @@ public class Menu {
 					else {
 						switch(l) {
 						case 1:
-							int x = 8;
-							int y = 8;
+							x = 8;
+							y = 8;
 							int minas = 10;
-							char[][] tablero = Partida.inicioTablero(x, y, minas);
-							char[][] secret = Partida.inicioSecret(x, y, minas);
+							tablero = Partida.inicioTablero(x, y, minas);
+							secret = Partida.inicioSecret(x, y, minas);
 							j1 = Jugadores.crearJugador();
 							Partida.jugar(tablero, secret, x, y, minas, x);
 							break;
@@ -75,7 +85,7 @@ public class Menu {
 				}while(!b);
 				break;
 			case 3:
-			Jugadores.veureJugador(j1, j1);
+			Jugadores.veureJugador(j, j1, j2, j3, j4);
 				break;
 			case 0:
 				break;

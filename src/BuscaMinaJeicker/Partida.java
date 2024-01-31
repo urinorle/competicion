@@ -109,7 +109,7 @@ public class Partida {
                     break;
                 } else if (secret[fila][columna] == '·') {
                     vacio(tablero, secret, x, y, fila, columna);
-                    boolean esWin = win(tablero, secret, x, y, fila, columna);
+                    boolean esWin = win(tablero, secret, x, y, fila, columna, fila);
                     if (esWin) {
                         break;
                     }
@@ -128,73 +128,49 @@ public class Partida {
         return mina;
     }
     
-    private static boolean win(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
-        int contadorCasillas = 0;
-        int contadorMinas = 0;
+    private static boolean win(char[][] tablero, char[][] secret, int x, int y, int fila, int columna, int minas) {
+        int contador = 0;
         for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                if (tablero[i][j] != '*') {
-                    contadorCasillas++;
-                } else {
-                    contadorMinas++;
+            for (int j = 0; j < y ; j++) {
+                if (tablero[i][j] == '·') {
+                    contador++;
                 }
             }
+
+
+            if (contador == minas){
+                System.out.println("Enhorabuena, has ganado");
+                mostrarMinas(tablero, secret, x, y);
+                return true;
+            }
+            else{
+                return false;
+            }
         }
-        if (contadorCasillas == (x * y) - contadorMinas) {
-            System.out.println("¡Felicidades, has ganado!");
-            mostrarMinas(tablero, secret, x, y);
-            return true;
-        } else {
-            return false;
-        }
-    }   
+        return false;
+    }
 
     private static void vacio(char[][] tablero, char[][] secret, int x, int y, int fila, int columna) {
-        if (secret[fila][columna] == '·') {
-            tablero[fila][columna] = secret[fila][columna];
-            if (fila > 0 && fila < x - 1 && columna > 0 && columna < y - 1) {
-                if (secret[fila - 1][columna - 1] != '*') {
-                    tablero[fila - 1][columna - 1] = secret[fila - 1][columna - 1];
-                    if (secret[fila - 1][columna - 1] == '·') {
-                        vacio(tablero, secret, x, y, fila - 1, columna - 1);
-                    }
-                }
-                if (secret[fila - 1][columna] != '*') {
-                    tablero[fila - 1][columna] = secret[fila - 1][columna];
-                    if (secret[fila - 1][columna] == '·') {
-                        vacio(tablero, secret, x, y, fila - 1, columna);
-                    }
-                }
-                if (secret[fila - 1][columna + 1] != '*') {
-                    tablero[fila - 1][columna + 1] = secret[fila - 1][columna + 1];
-                    if (secret[fila - 1][columna + 1] == '·') {
-                        vacio(tablero, secret, x, y, fila - 1, columna + 1);
-                    }
-                }
-                if (secret[fila][columna - 1] != '*') {
-                    tablero[fila][columna - 1] = secret[fila][columna - 1];
-                    if (secret[fila][columna - 1] == '·') {
-                        vacio(tablero, secret, x, y, fila, columna - 1);
-                    }
-                }
-                if (secret[fila][columna + 1] != '*') {
-                    tablero[fila][columna + 1] = secret[fila][columna + 1];
-                    if (secret[fila][columna + 1] == '·') {
-                        vacio(tablero, secret, x, y, fila, columna + 1);
-                    }
-                }
-                if (secret[fila + 1][columna - 1] != '*') {
-                    tablero[fila + 1][columna - 1] = secret[fila + 1][columna - 1];
-                    if (secret[fila + 1][columna - 1] == '·') {
-                        vacio(tablero, secret, x, y, fila + 1, columna - 1);
-                    }
-                }
-                if (secret[fila + 1][columna] != '*') {
-                    tablero[fila + 1][columna] = secret[fila + 1][columna];
-                    if (secret[fila + 1][columna] == '·') {
-                        vacio(tablero, secret, x, y, fila + 1, columna);
-                    }
-                }
+        char posicion = secret[fila][columna];
+        if (posicion >= '1' && posicion <= '8'){
+            tablero[fila][columna] = posicion;
+        }
+        else if (posicion == '*'){
+            tablero[fila][columna] = posicion;
+        }
+        else if (posicion == '·'){
+            tablero[fila][columna] = '◻';
+            if (fila + 1 < x && tablero[fila+1][columna] == '·'){
+                vacio(tablero, secret, x, y, fila+1, columna);
+            }
+            if (columna + 1 < y && tablero[fila][columna+1] == '·'){
+                vacio(tablero, secret, x, y, fila, columna+1);
+            }
+            if (fila -1 >= 0 && tablero[fila-1][columna] == '·'){
+                vacio(tablero, secret, x, y, fila-1, columna);
+            }
+            if (columna -1 >= 0 && tablero[fila][columna-1] == '·'){
+                vacio(tablero, secret, x, y, fila, columna-1);
             }
         }
     }
