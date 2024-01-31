@@ -165,7 +165,7 @@ public class Partida {
 	}
 
 	static int superficie(int[][] tauler) {
-		return 0;
+		return 1;
 
 	}
 

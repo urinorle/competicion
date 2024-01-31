@@ -47,7 +47,7 @@ public class Menu {
 					System.out.println(numSuperCreus);
 					break;
 				case 9:
-					Partida.superficie(tauler);
+					int num = Partida.superficie(tauler);
 					break;
 				case 0:
 					break;
