@@ -163,6 +163,8 @@ public class Funciones {
 			for (int j = 2; j < tablero[i].length - 2; j++) {
 				if (tablero[i][j] == '1' && tablero[i-1][j] == '1' && tablero[i+1][j] == '1' &&  tablero[i][j-1] == '1' && tablero[i][j+1] == '1' && tablero[i-2][j] != '1' && tablero[i+2][j] != '1' && tablero[i][j-2] != '1' && tablero[i][j+2] != '1') {
 					cont++;
+				} else if ((i == 2 && tablero[i-2][j] != '1') || (i == tablero.length - 3 && tablero[i+2][j] != '1') || (j == 2 && tablero[i][j-2] != '1') || (j == tablero[i].length - 3 && tablero[i][j+2] != '1')) {
+					cont++;
 				}
 			}
 		}

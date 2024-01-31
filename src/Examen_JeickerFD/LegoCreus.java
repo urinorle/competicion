@@ -80,7 +80,7 @@ public class LegoCreus {
 					}else{
 						int a = sc.nextInt();
 						int b = sc.nextInt();
-						int num = Funciones.superficie(tablero, a, b);
+						int num = Funciones.superficie(tablero2, a, b);
 						System.out.println("Hay " + num + " casillas disponibles");
 					}
 					break;
