@@ -78,7 +78,10 @@ public class LegoCreus {
 					if (tablero == null) {
 						System.out.println("No has definido el tablero");
 					}else{
-						Funciones.superficie(tablero);
+						int a = sc.nextInt();
+						int b = sc.nextInt();
+						int num = Funciones.superficie(tablero, a, b);
+						System.out.println("Hay " + num + " casillas disponibles");
 					}
 					break;
 				case 0:
