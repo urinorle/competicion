@@ -41,8 +41,18 @@ public class LegoCreus {
 					}
 					break;
 				case 5: 
+					if (tablero == null) {
+						System.out.println("No has definido el tablero");
+					}else{
+						Funciones.cruzQ(tablero);
+					}
 					break;
 				case 6:
+					if (tablero == null) {
+						System.out.println("No has definido el tablero");
+					}else{
+						Funciones.contarCruces(tablero);
+					}
 					break;
 				case 7:
 					break;
@@ -67,7 +77,7 @@ public class LegoCreus {
 		System.out.println("7.- Copiar y Ver");
 		System.out.println("8.- SuperCruces");
 		System.out.println("9.- Superficie");
-		System.out.println("0.-");
+		System.out.println("0.- Salir");
 		System.out.println("Escoge una opcion: ");
 	}
 

@@ -74,30 +74,60 @@ public class Funciones {
     public static boolean ponerNCruz(char[][] tablero) {
 		System.out.println("Introduce el numero de cruces: ");
 		int n = sc.nextInt();
-		if (n > 0 && n < (tablero.length*tablero.length/5)) {
-			int x = rd.nextInt(tablero.length);
-			int y = rd.nextInt(tablero.length);
-			if (tablero[x][y] == '0') {
-				if (x > 0 && tablero[x-1][y] == '0') {
-					tablero[x-1][y] = '1';
+		int i = 0;
+		boolean flag = false;
+		do {
+			if (n > 0 && n < (tablero.length*tablero.length/5)) {
+				int x = rd.nextInt(tablero.length);
+				int y = rd.nextInt(tablero.length);
+				if (tablero[x][y] == '0') {
+					if (x > 0 && tablero[x-1][y] == '0') {
+						tablero[x-1][y] = '1';
+					}
+					if (x < tablero.length-1 && tablero[x+1][y] == '0') {
+						tablero[x+1][y] = '1';
+					}
+					if (y > 0 && tablero[x][y-1] == '0') {
+						tablero[x][y-1] = '1';
+					}
+					if (y < tablero.length-1 && tablero[x][y+1] == '0') {
+						tablero[x][y+1] = '1';
+					}
+					tablero[x][y] = '1';
+					flag = true;
 				}
-				if (x < tablero.length-1 && tablero[x+1][y] == '0') {
-					tablero[x+1][y] = '1';
-				}
-				if (y > 0 && tablero[x][y-1] == '0') {
-					tablero[x][y-1] = '1';
-				}
-				if (y < tablero.length-1 && tablero[x][y+1] == '0') {
-					tablero[x][y+1] = '1';
-				}
-				tablero[x][y] = '1';
-				return true;
+			 }
+			 else {
+				System.out.println("El numero de cruces no es valido");
+				flag = false;
 			}
- 		}
-		 else {
-			System.out.println("El numero de cruces no es valido");
+			i++;
+		}while (i < n);
+		
+		return flag;
+	}
+
+	public static boolean cruzQ(char[][] tablero) {
+		int x = 0;
+		int y = 0;
+		System.out.println("Introduce la posicion de la cruz: ");
+		x = sc.nextInt();
+		y = sc.nextInt();
+		if ((x == 0 || x == tablero.length - 1 || y == 0 || y == tablero.length - 1) ||
+			(x > 0 && tablero[x][y] == '1' && tablero[x-1][y] == '1' && tablero[x+1][y] == '1' && tablero[x][y-1] == '1' && tablero[x][y+1] == '1')) {
+			System.out.println("Hay una Cruz");
+			return true;
+		} else {
+			System.out.println("No hay una Cruz");
 			return false;
 		}
-		return false;
 	}
+
+    public static int contarCruces(char[][] tablero) {
+
+		return 0;
+    }
+
+
+
 }
