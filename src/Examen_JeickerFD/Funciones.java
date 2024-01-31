@@ -28,6 +28,18 @@ public class Funciones {
     }
 
 	public static void verTablero(char[][] tablero) {
+		System.out.println("Tablero ");
+		for (int i = 0; i < tablero.length; i++) {
+			System.out.println();
+			for (int j = 0; j < tablero.length; j++) {
+				System.out.print(tablero[i][j] + " ");
+			}
+		}
+		System.out.println();
+	}
+
+	public static void verTableroCopia(char[][] tablero) {
+		System.out.println("Tablero copiado");
 		for (int i = 0; i < tablero.length; i++) {
 			System.out.println();
 			for (int j = 0; j < tablero.length; j++) {
@@ -123,11 +135,42 @@ public class Funciones {
 		}
 	}
 
-    public static int contarCruces(char[][] tablero) {
+	public static int contarCruces(char[][] tablero) {
+		int cont = 0;
+		for (int i = 1; i < tablero.length - 1; i++) {
+			for (int j = 1; j < tablero[i].length - 1; j++) {
+				if (tablero[i][j] == '1' && tablero[i-1][j] == '1' && tablero[i+1][j] == '1' && tablero[i][j-1] == '1' && tablero[i][j+1] == '1') {
+					cont++;
+				}
+			}
+		}
+		return cont;
+	}
 
-		return 0;
-    }
+	public static char[][] copiarTablero(char[][] tablero) {
+		char[][] tablero2 = new char[tablero.length][tablero.length];
+		for (int i = 0; i < tablero2.length; i++) {
+			for (int j = 0; j < tablero2.length; j++) {
+				tablero2[i][j] = tablero[i][j];
+			}
+		}
+		return tablero2;
+	}
 
+	public static int superCruces(char[][] tablero) {
+		int cont = 0;
+		for (int i = 2; i < tablero.length - 2; i++) {
+			for (int j = 2; j < tablero[i].length - 2; j++) {
+				if (tablero[i][j] == '1' && tablero[i-1][j] == '1' && tablero[i+1][j] == '1' &&  tablero[i][j-1] == '1' && tablero[i][j+1] == '1' && tablero[i-2][j] != '1' && tablero[i+2][j] != '1' && tablero[i][j-2] != '1' && tablero[i][j+2] != '1') {
+					cont++;
+				}
+			}
+		}
+		return cont;
+	}
 
+	public static void superficie(char[][] tablero) {
+		
+	}
 
 }

@@ -6,6 +6,7 @@ public class LegoCreus {
 	static Random r = new Random();
 	public static void main(String[] args) {
 		char[][] tablero = null;
+		char[][] tablero2 = null;
 		int x = 0;
 		int y = 0;
 		int opcio;
@@ -43,7 +44,7 @@ public class LegoCreus {
 				case 5: 
 					if (tablero == null) {
 						System.out.println("No has definido el tablero");
-					}else{
+					}else{	
 						Funciones.cruzQ(tablero);
 					}
 					break;
@@ -51,14 +52,34 @@ public class LegoCreus {
 					if (tablero == null) {
 						System.out.println("No has definido el tablero");
 					}else{
-						Funciones.contarCruces(tablero);
+						int num = Funciones.contarCruces(tablero);
+						System.out.println("Hay " + num + " cruces");
 					}
 					break;
 				case 7:
+					if (tablero == null) {
+						System.out.println("No has definido el tablero");
+					}else{
+					tablero2 = Funciones.copiarTablero(tablero);
+					Funciones.verTablero(tablero);
+					Funciones.verTableroCopia(tablero2);
+					}
 					break;
 				case 8:
+					if (tablero == null) {
+						System.out.println("No has definido el tablero");
+					}else{
+						
+						int num = Funciones.superCruces(tablero);
+						System.out.println("Hay " + num + " supercruces");
+					}
 					break;
 				case 9:
+					if (tablero == null) {
+						System.out.println("No has definido el tablero");
+					}else{
+						Funciones.superficie(tablero);
+					}
 					break;
 				case 0:
 					break;
