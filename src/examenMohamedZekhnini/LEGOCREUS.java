@@ -1,10 +1,9 @@
-package examen_mohamed_zekhnini;
+package examenMohamedZekhnini;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class LEGO_CREUS {
+public class LEGOCREUS {
 
 	public static Scanner sc = new Scanner(System.in);
 	public static Random rd = new Random();
@@ -115,8 +114,26 @@ public class LEGO_CREUS {
 				}
 				break;
 			case 8:
+				if (TaulerInicialitzat == true) {
+					int contador = 0;
+					contador = comptarSuperCreus(taulerCentres, contador);
+					System.out.println(contador);
+				} else {
+					System.out.println("Has de definir el tauler abans :(");
+				}
 				break;
 			case 9:
+				if (TaulerInicialitzat == true) {
+					int contador = 0;
+					System.out.println("Digues la fila de la illa que vols analitzar: ");
+					int x = sc.nextInt();
+					System.out.println("Digues la columna de la illa que vols analitzar: ");
+					int y = sc.nextInt();
+					contador = Superficie(tauler, contador, x, y);
+					System.out.println(contador);
+				} else {
+					System.out.println("Has de definir el tauler abans :(");
+				}
 				break;
 			case 0:
 				System.out.println("Adeu :)");
@@ -127,6 +144,80 @@ public class LEGO_CREUS {
 			}
 		} while (opcio != 0);
 
+	}
+
+	public static int Superficie(int[][] tauler, int contador, int x, int y) {
+		/*
+		tauler[x][y] = 2;
+
+		ocupar(tauler);
+		for (int i = 0; i < tauler.length; i++) {
+			for (int j = 0; j < tauler[0].length; j++) {
+				if (tauler[i][j] == 2) {
+					contador++;
+				}
+			}
+
+		}
+		for (int i = 0; i < tauler.length; i++) {
+			for (int j = 0; j < tauler[0].length; j++) {
+				if (tauler[i][j] == 2) {
+					tauler[i][j] == 1;
+				}
+			}
+
+		}
+		Ejercicio 75% hecho...
+		*/
+		return contador;
+		
+	}
+
+	public static int comptarSuperCreus(int[][] taulerCentres, int contador) {
+		int f = taulerCentres.length;
+		int c = taulerCentres[0].length;
+		for (int i = 0; i < f; i++) {
+			for (int j = 0; j < c; j++) {
+
+				if (taulerCentres[i][j] == 1) {
+					boolean flag = true;
+
+					for (int k = 0; i < f; i++) {
+						for (int l = 0; j < c; j++) {
+							if (taulerCentres[k][l] == 1 && l == j && k == (i - 2)) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && l == j && k == (i + 2)) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && (l == (j + 2)) && k == i) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && (l == (j - 2)) && k == i) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && l == (j + 1) && k == (i + 1)) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && l == (j - 1) && k == (i - 1)) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && l == (j + 1) && k == (i - 1)) {
+								flag = false;
+							}
+							if (taulerCentres[k][l] == 1 && l == (j - 1) && k == (i + 1)) {
+								flag = false;
+							}
+						}
+					}
+					if (flag) {
+						contador++; /* En teoria funciona... */
+					}
+				}
+			}
+
+		}
+		return contador;
 	}
 
 	public static void crearCopiaTauler(int[][] tauler, boolean copiaFeta) {
