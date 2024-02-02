@@ -163,14 +163,30 @@ public class Funciones {
 			for (int j = 2; j < tablero[i].length - 2; j++) {
 				if (tablero[i][j] == '1' && tablero[i-1][j] == '1' && tablero[i+1][j] == '1' &&  tablero[i][j-1] == '1' && tablero[i][j+1] == '1' && tablero[i-2][j] != '1' && tablero[i+2][j] != '1' && tablero[i][j-2] != '1' && tablero[i][j+2] != '1') {
 					cont++;
+				} else if ((i == 2 && tablero[i-2][j] != '1') || (i == tablero.length - 3 && tablero[i+2][j] != '1') || (j == 2 && tablero[i][j-2] != '1') || (j == tablero[i].length - 3 && tablero[i][j+2] != '1')) {
+					cont++;
 				}
 			}
 		}
 		return cont;
 	}
 
-	public static void superficie(char[][] tablero) {
-		
+	public static int superficie(char[][] tablero, int a, int b) {
+		int cont = 0;
+		if (a >= 0 && a < tablero.length && b >= 0 && b < tablero[a].length) {
+			if (tablero[a][b] == '1') {
+			} else {
+				if (tablero[a][b] == '0') {
+					tablero[a][b] = '2';
+					cont++;
+					cont += superficie(tablero, a - 1, b);
+					cont += superficie(tablero, a + 1, b);
+					cont += superficie(tablero, a, b - 1);
+					cont += superficie(tablero, a, b + 1);
+				}
+			}
+		}
+		return cont;
 	}
 
 }
